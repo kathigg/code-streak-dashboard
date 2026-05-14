@@ -22,7 +22,7 @@ class SvgTest(unittest.TestCase):
         self.assertTrue(svg.startswith("<svg"))
         self.assertIn("Coding over time", svg)
         self.assertIn("Streak awards", svg)
-        self.assertIn("Language mix", svg)
+        self.assertNotIn("Language mix", svg)
         self.assertIn("OpenMoji", svg)
 
 

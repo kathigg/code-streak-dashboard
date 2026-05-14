@@ -2,10 +2,9 @@ from __future__ import annotations
 
 import html
 import json
-import math
 from pathlib import Path
 
-from .metrics import DashboardMetrics, LanguageMetric, StreakAwardMetric
+from .metrics import DashboardMetrics, StreakAwardMetric
 
 
 WIDTH = 920
@@ -24,13 +23,12 @@ def write_outputs(metrics: DashboardMetrics, output_dir: Path) -> None:
 
 def render_dashboard_svg(metrics: DashboardMetrics) -> str:
     max_month = max((month.count for month in metrics.monthly), default=1) or 1
-    language_total = sum(language.size for language in metrics.languages)
     test_value = metrics.test_cases or metrics.test_files
 
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}" role="img" aria-labelledby="title desc">',
         f"<title id=\"title\">{_e(metrics.username)} coding streak dashboard</title>",
-        "<desc id=\"desc\">GitHub profile dashboard showing coding streak, streak awards, contribution graph, comments, tests, and language pie chart.</desc>",
+        "<desc id=\"desc\">GitHub profile dashboard showing coding streak, streak awards, contribution graph, comments, and tests.</desc>",
         _defs(),
         f'<rect width="{WIDTH}" height="{HEIGHT}" rx="34" fill="url(#bg)"/>',
         '<rect x="18" y="18" width="884" height="724" rx="28" fill="#fff8ec" opacity="0.92"/>',
@@ -43,7 +41,6 @@ def render_dashboard_svg(metrics: DashboardMetrics) -> str:
         _awards_card(metrics),
         _activity_chart(metrics, max_month),
         _recent_grid(metrics),
-        _language_pie(metrics, language_total),
         _footer(metrics),
         "</svg>",
     ]
@@ -80,7 +77,7 @@ def _header(metrics: DashboardMetrics) -> str:
     {_e(metrics.display_name)}'s code streak
   </text>
   <text x="2" y="34" fill="#53645f" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="14">
-    Contribution rhythm, repository scan stats, and language mix for @{_e(metrics.username)}
+    Contribution rhythm, repository scan stats, and streak prizes for @{_e(metrics.username)}
   </text>
 </g>
 """
@@ -145,7 +142,7 @@ def _awards_card(metrics: DashboardMetrics) -> str:
   <text x="80" y="314" fill="#17352e" font-family="Georgia, 'Trebuchet MS', serif" font-size="22" font-weight="800">
     Streak awards
   </text>
-  <text x="236" y="314" fill="#6c7a76" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
+  <text x="280" y="314" fill="#6c7a76" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
     GitHub-style milestone prizes
   </text>
   <rect x="592" y="300" width="248" height="10" rx="5" fill="#e9eee8"/>
@@ -193,7 +190,7 @@ def _award_display_title(title: str) -> str:
 
 
 def _activity_chart(metrics: DashboardMetrics, max_month: int) -> str:
-    x0, y0, width, height = 52, 424, 520, 190
+    x0, y0, width, height = 52, 430, 816, 190
     chart_x, chart_y, chart_w, chart_h = x0 + 28, y0 + 50, width - 58, 92
     step = chart_w / max(1, len(metrics.monthly) - 1)
     points = []
@@ -232,7 +229,7 @@ def _activity_chart(metrics: DashboardMetrics, max_month: int) -> str:
 
 
 def _recent_grid(metrics: DashboardMetrics) -> str:
-    x0, y0 = 52, 638
+    x0, y0 = 52, 660
     cells = []
     max_count = max((day.count for day in metrics.recent_days), default=1) or 1
     for index, day in enumerate(metrics.recent_days):
@@ -252,40 +249,17 @@ def _recent_grid(metrics: DashboardMetrics) -> str:
 """
 
 
-def _language_pie(metrics: DashboardMetrics, total: int) -> str:
-    x0, y0 = 612, 424
-    if not metrics.languages or total <= 0:
-        pie = '<circle cx="712" cy="520" r="70" fill="#e9eee8"/>'
-        legend = '<text x="636" y="630" fill="#6c7a76" font-size="13" font-family="\'Trebuchet MS\', Verdana, sans-serif">No language bytes found yet.</text>'
-    else:
-        pie = _pie_paths(metrics.languages, 712, 520, 72)
-        legend = _language_legend(metrics.languages, 796, 468)
-    return f"""
-<g filter="url(#softShadow)">
-  <rect x="{x0}" y="{y0}" width="256" height="242" rx="24" fill="#fffdf7"/>
-  <text x="{x0 + 24}" y="{y0 + 32}" fill="#17352e" font-family="Georgia, 'Trebuchet MS', serif" font-size="22" font-weight="800">
-    Language mix
-  </text>
-  <text x="{x0 + 24}" y="{y0 + 54}" fill="#6c7a76" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
-    Public owned repositories
-  </text>
-  {pie}
-  {legend}
-</g>
-"""
-
-
 def _footer(metrics: DashboardMetrics) -> str:
     scan_note = f"{metrics.scanned_repositories} repos scanned"
     if metrics.failed_repositories:
         scan_note += f", {metrics.failed_repositories} skipped"
     return f"""
 <g>
-  <text x="612" y="716" fill="#53645f" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
-    Source scan: {_e(scan_note)} • {metrics.source_files:,} files • {metrics.source_lines:,} nonblank lines
-  </text>
   <text x="52" y="716" fill="#53645f" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
     Fire graphic source: OpenMoji 1F525 • Generated {metrics.generated_at}
+  </text>
+  <text x="868" y="716" text-anchor="end" fill="#53645f" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
+    Source scan: {_e(scan_note)} • {metrics.source_files:,} files • {metrics.source_lines:,} nonblank lines
   </text>
 </g>
 """
@@ -302,54 +276,6 @@ def _fire_icon(x: int, y: int, size: int) -> str:
   <path fill="none" stroke="#101820" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21.5108,57.4557c0,0-10.5321-11.2011-0.4546-25.9791c0,0,0.1969,4.0589,1.2551,6.5816c0.4834,1.0362,1.2122,1.9569,2.3487,1.9569c1.3355,0,2.4181-0.8972,2.4181-2.5708c0-0.2599,0-0.6721,0-0.9184c0.105-3.0996-0.5251-7.6659,3.5708-17.19c0,0,7.0365,3.7835,3.9909-14.6122c0,0,14.8798,10.4421,14.2762,28.217c0,1.2693,0.9678,2.2983,2.1617,2.2983s2.1617-1.029,2.1617-2.2983c0.075,0.1341,6.3219,13.078-2.514,24.515"/>
 </g>
 """
-
-
-def _pie_paths(languages: list[LanguageMetric], cx: int, cy: int, radius: int) -> str:
-    if len(languages) == 1:
-        language = languages[0]
-        return f'<circle cx="{cx}" cy="{cy}" r="{radius}" fill="{language.color}"/>'
-
-    paths = []
-    start = -90.0
-    for language in languages:
-        sweep = max(language.percent * 360, 0.01)
-        end = start + sweep
-        paths.append(_pie_slice(cx, cy, radius, start, end, language.color, language.name))
-        start = end
-    return "\n".join(paths)
-
-
-def _pie_slice(cx: int, cy: int, radius: int, start: float, end: float, color: str, label: str) -> str:
-    start_x, start_y = _polar(cx, cy, radius, end)
-    end_x, end_y = _polar(cx, cy, radius, start)
-    large_arc = 1 if end - start > 180 else 0
-    return (
-        f'<path d="M {cx} {cy} L {start_x:.2f} {start_y:.2f} '
-        f'A {radius} {radius} 0 {large_arc} 0 {end_x:.2f} {end_y:.2f} Z" fill="{color}">'
-        f"<title>{_e(label)}</title></path>"
-    )
-
-
-def _polar(cx: int, cy: int, radius: int, angle: float) -> tuple[float, float]:
-    radians = math.radians(angle)
-    return cx + radius * math.cos(radians), cy + radius * math.sin(radians)
-
-
-def _language_legend(languages: list[LanguageMetric], x: int, y: int) -> str:
-    rows = []
-    for index, language in enumerate(languages[:6]):
-        row_y = y + index * 24
-        label = language.name if len(language.name) <= 15 else language.name[:14] + "..."
-        rows.append(
-            f"""
-<g>
-  <rect x="{x}" y="{row_y - 10}" width="10" height="10" rx="3" fill="{language.color}"/>
-  <text x="{x + 16}" y="{row_y}" fill="#17352e" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="11" font-weight="700">{_e(label)}</text>
-  <text x="{x + 16}" y="{row_y + 13}" fill="#6c7a76" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="10">{language.percent * 100:.1f}%</text>
-</g>
-"""
-        )
-    return "\n".join(rows)
 
 
 def _heat_color(intensity: float) -> str:
