@@ -10,6 +10,8 @@ from .metrics import DashboardMetrics, StreakAwardMetric
 WIDTH = 920
 HEIGHT = 760
 OPENMOJI_FIRE_SOURCE = "https://openmoji.org/library/emoji-1F525/"
+FONT = "'Space Grotesk', 'Segoe UI', Helvetica, Arial, sans-serif"
+MONO_FONT = "'SFMono-Regular', 'Cascadia Mono', 'Roboto Mono', monospace"
 
 
 def write_outputs(metrics: DashboardMetrics, output_dir: Path) -> None:
@@ -30,14 +32,13 @@ def render_dashboard_svg(metrics: DashboardMetrics) -> str:
         f"<title id=\"title\">{_e(metrics.username)} coding streak dashboard</title>",
         "<desc id=\"desc\">GitHub profile dashboard showing coding streak, streak awards, contribution graph, comments, and tests.</desc>",
         _defs(),
-        f'<rect width="{WIDTH}" height="{HEIGHT}" rx="34" fill="url(#bg)"/>',
-        '<rect x="18" y="18" width="884" height="724" rx="28" fill="#fff8ec" opacity="0.92"/>',
-        '<rect x="18" y="18" width="884" height="724" rx="28" fill="url(#grain)" opacity="0.32"/>',
+        f'<rect width="{WIDTH}" height="{HEIGHT}" rx="34" fill="#ffffff"/>',
+        '<rect x="18" y="18" width="884" height="724" rx="28" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>',
         _header(metrics),
         _streak_card(metrics),
-        _metric_card(356, 120, "Active days", f"{metrics.active_days}", "days with contributions", "#0f766e"),
-        _metric_card(536, 120, "Comments", f"{metrics.comment_lines:,}", "comment lines scanned", "#b45309"),
-        _metric_card(716, 120, "Tests", f"{test_value:,}", _test_caption(metrics), "#2563eb"),
+        _metric_card(356, 120, "Active days", f"{metrics.active_days}", "days with contributions"),
+        _metric_card(536, 120, "Comments", f"{metrics.comment_lines:,}", "comment lines scanned"),
+        _metric_card(716, 120, "Tests", f"{test_value:,}", _test_caption(metrics)),
         _awards_card(metrics),
         _activity_chart(metrics, max_month),
         _recent_grid(metrics),
@@ -50,21 +51,8 @@ def render_dashboard_svg(metrics: DashboardMetrics) -> str:
 def _defs() -> str:
     return """
 <defs>
-  <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
-    <stop offset="0%" stop-color="#10231f"/>
-    <stop offset="44%" stop-color="#1b4d3e"/>
-    <stop offset="100%" stop-color="#f59e0b"/>
-  </linearGradient>
-  <linearGradient id="flameFill" x1="0" x2="1" y1="0" y2="1">
-    <stop offset="0%" stop-color="#ffef74"/>
-    <stop offset="52%" stop-color="#ff9f1c"/>
-    <stop offset="100%" stop-color="#e63900"/>
-  </linearGradient>
-  <pattern id="grain" width="18" height="18" patternUnits="userSpaceOnUse">
-    <path d="M0 18 L18 0" stroke="#d6a13a" stroke-width="1" opacity="0.25"/>
-  </pattern>
   <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
-    <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#10231f" flood-opacity="0.18"/>
+    <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#0f172a" flood-opacity="0.06"/>
   </filter>
 </defs>
 """
@@ -73,12 +61,13 @@ def _defs() -> str:
 def _header(metrics: DashboardMetrics) -> str:
     return f"""
 <g transform="translate(52 52)">
-  <text x="0" y="0" fill="#17352e" font-family="Georgia, 'Trebuchet MS', serif" font-size="34" font-weight="800">
+  <text x="0" y="0" fill="#0f172a" font-family="{FONT}" font-size="32" font-weight="700" letter-spacing="-0.6">
     {_e(metrics.display_name)}'s code streak
   </text>
-  <text x="2" y="34" fill="#53645f" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="14">
+  <text x="2" y="34" fill="#64748b" font-family="{FONT}" font-size="14">
     Contribution rhythm, repository scan stats, and streak prizes for @{_e(metrics.username)}
   </text>
+  <line x1="0" y1="54" x2="816" y2="54" stroke="#e5e7eb" stroke-width="1"/>
 </g>
 """
 
@@ -87,34 +76,35 @@ def _streak_card(metrics: DashboardMetrics) -> str:
     streak_word = "day" if metrics.current_streak == 1 else "days"
     return f"""
 <g filter="url(#softShadow)">
-  <rect x="52" y="112" width="268" height="150" rx="24" fill="#17352e"/>
-  <path d="M52 220 C110 186 168 260 320 196 L320 262 L52 262 Z" fill="#235f4e" opacity="0.72"/>
-  {_fire_icon(78, 136, 82)}
-  <text x="168" y="168" fill="#fff8ec" font-family="Georgia, 'Trebuchet MS', serif" font-size="48" font-weight="900">
+  <rect x="52" y="112" width="268" height="150" rx="24" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="70" y="130" width="66" height="66" rx="18" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  {_fire_icon(78, 136, 52)}
+  <text x="168" y="168" fill="#0f172a" font-family="{MONO_FONT}" font-size="48" font-weight="800">
     {metrics.current_streak}
   </text>
-  <text x="170" y="196" fill="#ffd166" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="17" font-weight="700">
+  <text x="170" y="196" fill="#0891b2" font-family="{FONT}" font-size="16" font-weight="700">
     {streak_word} in a row
   </text>
-  <text x="170" y="222" fill="#cfe6dc" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="13">
+  <text x="170" y="222" fill="#64748b" font-family="{FONT}" font-size="13">
     Longest streak: {metrics.longest_streak} days
   </text>
+  <line x1="70" y1="232" x2="302" y2="232" stroke="#e5e7eb" stroke-width="1"/>
 </g>
 """
 
 
-def _metric_card(x: int, y: int, title: str, value: str, caption: str, color: str) -> str:
+def _metric_card(x: int, y: int, title: str, value: str, caption: str) -> str:
     return f"""
 <g filter="url(#softShadow)">
-  <rect x="{x}" y="{y}" width="150" height="132" rx="22" fill="#fffdf7"/>
-  <circle cx="{x + 26}" cy="{y + 30}" r="10" fill="{color}"/>
-  <text x="{x + 46}" y="{y + 35}" fill="#53645f" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="13" font-weight="700">
+  <rect x="{x}" y="{y}" width="150" height="132" rx="22" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+  <line x1="{x + 24}" y1="{y + 26}" x2="{x + 50}" y2="{y + 26}" stroke="#06b6d4" stroke-width="2" stroke-linecap="round"/>
+  <text x="{x + 24}" y="{y + 48}" fill="#64748b" font-family="{FONT}" font-size="12" font-weight="700" letter-spacing="0.8">
     {_e(title)}
   </text>
-  <text x="{x + 24}" y="{y + 82}" fill="#17352e" font-family="Georgia, 'Trebuchet MS', serif" font-size="32" font-weight="900">
+  <text x="{x + 24}" y="{y + 86}" fill="#0f172a" font-family="{MONO_FONT}" font-size="30" font-weight="800">
     {_e(value)}
   </text>
-  <text x="{x + 24}" y="{y + 108}" fill="#6c7a76" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
+  <text x="{x + 24}" y="{y + 110}" fill="#94a3b8" font-family="{FONT}" font-size="11">
     {_e(caption)}
   </text>
 </g>
@@ -138,16 +128,16 @@ def _awards_card(metrics: DashboardMetrics) -> str:
     )
     return f"""
 <g filter="url(#softShadow)">
-  <rect x="52" y="282" width="816" height="130" rx="24" fill="#fffdf7"/>
-  <text x="80" y="314" fill="#17352e" font-family="Georgia, 'Trebuchet MS', serif" font-size="22" font-weight="800">
+  <rect x="52" y="282" width="816" height="130" rx="24" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="80" y="314" fill="#0f172a" font-family="{FONT}" font-size="20" font-weight="700" letter-spacing="-0.2">
     Streak awards
   </text>
-  <text x="280" y="314" fill="#6c7a76" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
-    GitHub-style milestone prizes
+  <text x="254" y="314" fill="#94a3b8" font-family="{FONT}" font-size="12">
+    milestone prizes
   </text>
-  <rect x="592" y="300" width="248" height="10" rx="5" fill="#e9eee8"/>
-  <rect x="592" y="300" width="{progress_width:.1f}" height="10" rx="5" fill="#f59e0b"/>
-  <text x="840" y="329" text-anchor="end" fill="#53645f" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
+  <rect x="592" y="300" width="248" height="8" rx="4" fill="#e2e8f0"/>
+  <rect x="592" y="300" width="{progress_width:.1f}" height="8" rx="4" fill="#06b6d4"/>
+  <text x="840" y="329" text-anchor="end" fill="#64748b" font-family="{FONT}" font-size="12">
     {_e(progress_label)}
   </text>
   {badges}
@@ -157,23 +147,23 @@ def _awards_card(metrics: DashboardMetrics) -> str:
 
 def _award_badge(x: int, y: int, award: StreakAwardMetric) -> str:
     display_title = _award_display_title(award.title)
-    fill = award.color if award.unlocked else "#d8ded8"
-    text_fill = "#fff8ec" if award.unlocked else "#6c7a76"
-    subtitle_fill = "#53645f" if award.unlocked else "#8a9692"
-    opacity = "1" if award.unlocked else "0.72"
-    stroke = "#17352e" if award.active else "#fffdf7"
+    threshold_fill = "#0f172a" if award.unlocked else "#94a3b8"
+    title_fill = "#0f172a" if award.unlocked else "#94a3b8"
+    subtitle_fill = "#0891b2" if award.unlocked else "#cbd5e1"
+    opacity = "1" if award.unlocked else "0.62"
+    stroke = "#06b6d4" if award.active else "#e2e8f0"
     return f"""
 <g opacity="{opacity}">
   <title>{_e(award.title)}: {_e(award.subtitle)}</title>
-  <path d="M{x + 28} {y} L{x + 54} {y + 14} L{x + 54} {y + 44} L{x + 28} {y + 58} L{x + 2} {y + 44} L{x + 2} {y + 14} Z" fill="{fill}" stroke="{stroke}" stroke-width="3"/>
-  <circle cx="{x + 28}" cy="{y + 29}" r="17" fill="#fff8ec" opacity="0.18"/>
-  <text x="{x + 28}" y="{y + 35}" text-anchor="middle" fill="{text_fill}" font-family="Georgia, 'Trebuchet MS', serif" font-size="16" font-weight="900">
+  <path d="M{x + 28} {y} L{x + 54} {y + 14} L{x + 54} {y + 44} L{x + 28} {y + 58} L{x + 2} {y + 44} L{x + 2} {y + 14} Z" fill="#ffffff" stroke="{stroke}" stroke-width="3"/>
+  <circle cx="{x + 28}" cy="{y + 29}" r="17" fill="#f8fafc"/>
+  <text x="{x + 28}" y="{y + 35}" text-anchor="middle" fill="{threshold_fill}" font-family="{MONO_FONT}" font-size="14" font-weight="800">
     {award.threshold}d
   </text>
-  <text x="{x + 28}" y="{y + 78}" text-anchor="middle" fill="#17352e" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="10" font-weight="800">
+  <text x="{x + 28}" y="{y + 78}" text-anchor="middle" fill="{title_fill}" font-family="{FONT}" font-size="10" font-weight="700">
     {_e(display_title)}
   </text>
-  <text x="{x + 28}" y="{y + 92}" text-anchor="middle" fill="{subtitle_fill}" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="9">
+  <text x="{x + 28}" y="{y + 92}" text-anchor="middle" fill="{subtitle_fill}" font-family="{FONT}" font-size="9">
     {_e("Unlocked" if award.unlocked else "Locked")}
   </text>
 </g>
@@ -202,26 +192,26 @@ def _activity_chart(metrics: DashboardMetrics, max_month: int) -> str:
         area_points.append(f"{x:.1f},{y:.1f}")
     area_points.append(f"{chart_x + chart_w},{chart_y + chart_h}")
     month_labels = "\n".join(
-        f'<text x="{chart_x + index * step:.1f}" y="{chart_y + chart_h + 28}" text-anchor="middle" fill="#75837f" font-family="\'Trebuchet MS\', Verdana, sans-serif" font-size="10">{_e(month.label)}</text>'
+        f'<text x="{chart_x + index * step:.1f}" y="{chart_y + chart_h + 28}" text-anchor="middle" fill="#94a3b8" font-family="{FONT}" font-size="10">{_e(month.label)}</text>'
         for index, month in enumerate(metrics.monthly)
     )
     value_labels = "\n".join(
-        f'<circle cx="{point.split(",")[0]}" cy="{point.split(",")[1]}" r="4.5" fill="#f59e0b" stroke="#17352e" stroke-width="2"/>'
+        f'<circle cx="{point.split(",")[0]}" cy="{point.split(",")[1]}" r="4" fill="#ffffff" stroke="#06b6d4" stroke-width="2"/>'
         for point in points
     )
     return f"""
 <g filter="url(#softShadow)">
-  <rect x="{x0}" y="{y0}" width="{width}" height="{height}" rx="24" fill="#fffdf7"/>
-  <text x="{x0 + 28}" y="{y0 + 30}" fill="#17352e" font-family="Georgia, 'Trebuchet MS', serif" font-size="22" font-weight="800">
+  <rect x="{x0}" y="{y0}" width="{width}" height="{height}" rx="24" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="{x0 + 28}" y="{y0 + 30}" fill="#0f172a" font-family="{FONT}" font-size="20" font-weight="700" letter-spacing="-0.2">
     Coding over time
   </text>
-  <text x="{x0 + width - 28}" y="{y0 + 30}" text-anchor="end" fill="#6c7a76" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
+  <text x="{x0 + width - 28}" y="{y0 + 30}" text-anchor="end" fill="#64748b" font-family="{FONT}" font-size="12">
     {metrics.total_contributions:,} contributions / 365 days
   </text>
-  <line x1="{chart_x}" y1="{chart_y + chart_h}" x2="{chart_x + chart_w}" y2="{chart_y + chart_h}" stroke="#d8ded8" stroke-width="1"/>
-  <line x1="{chart_x}" y1="{chart_y}" x2="{chart_x}" y2="{chart_y + chart_h}" stroke="#d8ded8" stroke-width="1"/>
-  <path d="M {' L '.join(area_points)} Z" fill="#f59e0b" opacity="0.22"/>
-  <polyline points="{' '.join(points)}" fill="none" stroke="#17352e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="{chart_x}" y1="{chart_y + chart_h}" x2="{chart_x + chart_w}" y2="{chart_y + chart_h}" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="{chart_x}" y1="{chart_y}" x2="{chart_x}" y2="{chart_y + chart_h}" stroke="#e2e8f0" stroke-width="1"/>
+  <path d="M {' L '.join(area_points)} Z" fill="#06b6d4" opacity="0.08"/>
+  <polyline points="{' '.join(points)}" fill="none" stroke="#06b6d4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
   {value_labels}
   {month_labels}
 </g>
@@ -235,13 +225,13 @@ def _recent_grid(metrics: DashboardMetrics) -> str:
     for index, day in enumerate(metrics.recent_days):
         col = index % 49
         intensity = day.count / max_count
-        color = _heat_color(intensity) if day.count else "#e9eee8"
+        color = _heat_color(intensity) if day.count else "#e2e8f0"
         cells.append(
             f'<rect x="{x0 + col * 10}" y="{y0}" width="7" height="28" rx="3.5" fill="{color}"><title>{_e(day.date)}: {day.count}</title></rect>'
         )
     return f"""
 <g>
-  <text x="{x0}" y="{y0 - 18}" fill="#17352e" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="13" font-weight="800">
+  <text x="{x0}" y="{y0 - 18}" fill="#0f172a" font-family="{FONT}" font-size="13" font-weight="700">
     Last 49 days
   </text>
   {''.join(cells)}
@@ -255,10 +245,10 @@ def _footer(metrics: DashboardMetrics) -> str:
         scan_note += f", {metrics.failed_repositories} skipped"
     return f"""
 <g>
-  <text x="52" y="716" fill="#53645f" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
+  <text x="52" y="716" fill="#94a3b8" font-family="{FONT}" font-size="11">
     Fire graphic source: OpenMoji 1F525 • Generated {metrics.generated_at}
   </text>
-  <text x="868" y="716" text-anchor="end" fill="#53645f" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
+  <text x="868" y="716" text-anchor="end" fill="#94a3b8" font-family="{FONT}" font-size="11">
     Source scan: {_e(scan_note)} • {metrics.source_files:,} files • {metrics.source_lines:,} nonblank lines
   </text>
 </g>
@@ -280,12 +270,12 @@ def _fire_icon(x: int, y: int, size: int) -> str:
 
 def _heat_color(intensity: float) -> str:
     if intensity >= 0.75:
-        return "#0f5132"
+        return "#0891b2"
     if intensity >= 0.5:
-        return "#198754"
+        return "#22d3ee"
     if intensity >= 0.25:
-        return "#6bbf59"
-    return "#b7e4a8"
+        return "#67e8f9"
+    return "#cffafe"
 
 
 def _test_caption(metrics: DashboardMetrics) -> str:

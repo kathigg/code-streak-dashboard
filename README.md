@@ -1,6 +1,6 @@
 # Code Streak Dashboard
 
-Generate a GitHub-profile analytics suite with a Duolingo-style coding streak dashboard, a fire graphic, contribution trends, comment and test counts, streak prizes, and forked 3D contribution graphics.
+Generate a GitHub-profile analytics suite with a minimal white coding streak dashboard, a fire graphic, contribution trends, comment and test counts, streak prizes, and forked 3D contribution graphics.
 
 The generated assets are static SVGs, so they can be embedded directly in a GitHub profile README:
 
