@@ -1,0 +1,60 @@
+name: Generate dashboard
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 10 * * *"
+  push:
+    branches: ["main"]
+    paths:
+      - "src/**"
+      - "tests/**"
+      - ".github/workflows/generate-dashboard.yml"
+      - "pyproject.toml"
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    env:
+      DASHBOARD_USERNAME: ${{ vars.DASHBOARD_USERNAME }}
+      DASHBOARD_GITHUB_TOKEN: ${{ secrets.DASHBOARD_GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Test generator
+        run: |
+          python -m compileall src
+          PYTHONPATH=src python -m unittest discover -s tests
+
+      - name: Generate SVG dashboard
+        run: |
+          set -euo pipefail
+          USERNAME="${DASHBOARD_USERNAME:-${GITHUB_REPOSITORY_OWNER}}"
+          PYTHONPATH=src python -m code_streak_dashboard \
+            --username "$USERNAME" \
+            --output-dir dist \
+            --scan-limit "${DASHBOARD_SCAN_LIMIT:-30}"
+
+      - name: Commit generated assets
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- dist; then
+            echo "No dashboard changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dist/dashboard.svg dist/metrics.json
+          git commit -m "Update generated dashboard"
+          git push

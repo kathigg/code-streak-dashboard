@@ -1,0 +1,15 @@
+[project]
+name = "code-streak-dashboard"
+version = "0.1.0"
+description = "Generate a GitHub-profile SVG dashboard with coding streaks, language charts, and repository code metrics."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Kathleen Higgins" }]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

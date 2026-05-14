@@ -1,0 +1,116 @@
+{
+  "active_days": 176,
+  "comments": {
+    "lines": 3975
+  },
+  "current_streak": 13,
+  "generated_at": "2026-05-14T18:42:38Z",
+  "languages": [
+    {
+      "color": "#3572A5",
+      "name": "Python",
+      "percent": 0.8767,
+      "size": 26800951
+    },
+    {
+      "color": "#3178c6",
+      "name": "TypeScript",
+      "percent": 0.0521,
+      "size": 1593073
+    },
+    {
+      "color": "#DA5B0B",
+      "name": "Jupyter Notebook",
+      "percent": 0.0363,
+      "size": 1111057
+    },
+    {
+      "color": "#f34b7d",
+      "name": "C++",
+      "percent": 0.0082,
+      "size": 250402
+    },
+    {
+      "color": "#e16737",
+      "name": "MATLAB",
+      "percent": 0.0076,
+      "size": 233620
+    },
+    {
+      "color": "#fedf5b",
+      "name": "Cython",
+      "percent": 0.0075,
+      "size": 229417
+    },
+    {
+      "color": "#8d99ae",
+      "name": "Other",
+      "percent": 0.0116,
+      "size": 353281
+    }
+  ],
+  "longest_streak": 13,
+  "monthly": [
+    {
+      "count": 111,
+      "month": "2025-06"
+    },
+    {
+      "count": 211,
+      "month": "2025-07"
+    },
+    {
+      "count": 21,
+      "month": "2025-08"
+    },
+    {
+      "count": 97,
+      "month": "2025-09"
+    },
+    {
+      "count": 71,
+      "month": "2025-10"
+    },
+    {
+      "count": 107,
+      "month": "2025-11"
+    },
+    {
+      "count": 56,
+      "month": "2025-12"
+    },
+    {
+      "count": 80,
+      "month": "2026-01"
+    },
+    {
+      "count": 104,
+      "month": "2026-02"
+    },
+    {
+      "count": 44,
+      "month": "2026-03"
+    },
+    {
+      "count": 78,
+      "month": "2026-04"
+    },
+    {
+      "count": 113,
+      "month": "2026-05"
+    }
+  ],
+  "source_scan": {
+    "failed_repositories": 0,
+    "files": 498,
+    "lines": 62781,
+    "repositories": 30
+  },
+  "tests": {
+    "cases": 115,
+    "files": 19,
+    "lines": 1542
+  },
+  "total_contributions": 1095,
+  "username": "kathigg"
+}
