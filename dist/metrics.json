@@ -1,21 +1,21 @@
 {
-  "active_days": 176,
+  "active_days": 177,
   "comments": {
-    "lines": 3975
+    "lines": 3553
   },
   "current_streak": 13,
-  "generated_at": "2026-05-14T18:42:38Z",
+  "generated_at": "2026-05-14T18:44:16Z",
   "languages": [
     {
       "color": "#3572A5",
       "name": "Python",
-      "percent": 0.8767,
-      "size": 26800951
+      "percent": 0.8768,
+      "size": 26846949
     },
     {
       "color": "#3178c6",
       "name": "TypeScript",
-      "percent": 0.0521,
+      "percent": 0.052,
       "size": 1593073
     },
     {
@@ -45,7 +45,7 @@
     {
       "color": "#8d99ae",
       "name": "Other",
-      "percent": 0.0116,
+      "percent": 0.0115,
       "size": 353281
     }
   ],
@@ -96,21 +96,21 @@
       "month": "2026-04"
     },
     {
-      "count": 113,
+      "count": 115,
       "month": "2026-05"
     }
   ],
   "source_scan": {
     "failed_repositories": 0,
-    "files": 498,
-    "lines": 62781,
+    "files": 491,
+    "lines": 62571,
     "repositories": 30
   },
   "tests": {
-    "cases": 115,
-    "files": 19,
-    "lines": 1542
+    "cases": 80,
+    "files": 16,
+    "lines": 1156
   },
-  "total_contributions": 1095,
+  "total_contributions": 1097,
   "username": "kathigg"
 }

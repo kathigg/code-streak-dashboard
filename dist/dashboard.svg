@@ -65,7 +65,7 @@
     Active days
   </text>
   <text x="380" y="202" fill="#17352e" font-family="Georgia, 'Trebuchet MS', serif" font-size="32" font-weight="900">
-    176
+    177
   </text>
   <text x="380" y="228" fill="#6c7a76" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
     days with contributions
@@ -80,7 +80,7 @@
     Comments
   </text>
   <text x="560" y="202" fill="#17352e" font-family="Georgia, 'Trebuchet MS', serif" font-size="32" font-weight="900">
-    3,975
+    3,553
   </text>
   <text x="560" y="228" fill="#6c7a76" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
     comment lines scanned
@@ -95,10 +95,10 @@
     Tests
   </text>
   <text x="740" y="202" fill="#17352e" font-family="Georgia, 'Trebuchet MS', serif" font-size="32" font-weight="900">
-    115
+    80
   </text>
   <text x="740" y="228" fill="#6c7a76" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
-    19 files detected
+    16 files detected
   </text>
 </g>
 
@@ -109,12 +109,12 @@
     Coding over time
   </text>
   <text x="544" y="336" text-anchor="end" fill="#6c7a76" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
-    1,095 contributions / 365 days
+    1,097 contributions / 365 days
   </text>
   <line x1="80" y1="448" x2="542" y2="448" stroke="#d8ded8" stroke-width="1"/>
   <line x1="80" y1="356" x2="80" y2="448" stroke="#d8ded8" stroke-width="1"/>
-  <path d="M 80,448 L 80.0,399.6 L 122.0,356.0 L 164.0,438.8 L 206.0,405.7 L 248.0,417.0 L 290.0,401.3 L 332.0,423.6 L 374.0,413.1 L 416.0,402.7 L 458.0,428.8 L 500.0,414.0 L 542.0,398.7 L 542,448 Z" fill="#f59e0b" opacity="0.22"/>
-  <polyline points="80.0,399.6 122.0,356.0 164.0,438.8 206.0,405.7 248.0,417.0 290.0,401.3 332.0,423.6 374.0,413.1 416.0,402.7 458.0,428.8 500.0,414.0 542.0,398.7" fill="none" stroke="#17352e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 80,448 L 80.0,399.6 L 122.0,356.0 L 164.0,438.8 L 206.0,405.7 L 248.0,417.0 L 290.0,401.3 L 332.0,423.6 L 374.0,413.1 L 416.0,402.7 L 458.0,428.8 L 500.0,414.0 L 542.0,397.9 L 542,448 Z" fill="#f59e0b" opacity="0.22"/>
+  <polyline points="80.0,399.6 122.0,356.0 164.0,438.8 206.0,405.7 248.0,417.0 290.0,401.3 332.0,423.6 374.0,413.1 416.0,402.7 458.0,428.8 500.0,414.0 542.0,397.9" fill="none" stroke="#17352e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
   <circle cx="80.0" cy="399.6" r="4.5" fill="#f59e0b" stroke="#17352e" stroke-width="2"/>
 <circle cx="122.0" cy="356.0" r="4.5" fill="#f59e0b" stroke="#17352e" stroke-width="2"/>
 <circle cx="164.0" cy="438.8" r="4.5" fill="#f59e0b" stroke="#17352e" stroke-width="2"/>
@@ -126,7 +126,7 @@
 <circle cx="416.0" cy="402.7" r="4.5" fill="#f59e0b" stroke="#17352e" stroke-width="2"/>
 <circle cx="458.0" cy="428.8" r="4.5" fill="#f59e0b" stroke="#17352e" stroke-width="2"/>
 <circle cx="500.0" cy="414.0" r="4.5" fill="#f59e0b" stroke="#17352e" stroke-width="2"/>
-<circle cx="542.0" cy="398.7" r="4.5" fill="#f59e0b" stroke="#17352e" stroke-width="2"/>
+<circle cx="542.0" cy="397.9" r="4.5" fill="#f59e0b" stroke="#17352e" stroke-width="2"/>
   <text x="80.0" y="476" text-anchor="middle" fill="#75837f" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="10">Jun</text>
 <text x="122.0" y="476" text-anchor="middle" fill="#75837f" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="10">Jul</text>
 <text x="164.0" y="476" text-anchor="middle" fill="#75837f" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="10">Aug</text>
@@ -146,7 +146,7 @@
   <text x="52" y="502" fill="#17352e" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="13" font-weight="800">
     Last 49 days
   </text>
-  <rect x="52" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-03-27: 0</title></rect><rect x="62" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-03-28: 0</title></rect><rect x="72" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-03-29: 0</title></rect><rect x="82" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-03-30: 0</title></rect><rect x="92" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-03-31: 5</title></rect><rect x="102" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-04-01: 0</title></rect><rect x="112" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-02: 4</title></rect><rect x="122" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-03: 1</title></rect><rect x="132" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-04: 1</title></rect><rect x="142" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-05: 1</title></rect><rect x="152" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-06: 3</title></rect><rect x="162" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-07: 1</title></rect><rect x="172" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-08: 3</title></rect><rect x="182" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-09: 6</title></rect><rect x="192" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-10: 2</title></rect><rect x="202" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-04-11: 0</title></rect><rect x="212" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-04-12: 0</title></rect><rect x="222" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-04-13: 0</title></rect><rect x="232" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-14: 1</title></rect><rect x="242" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-15: 1</title></rect><rect x="252" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-16: 2</title></rect><rect x="262" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-17: 5</title></rect><rect x="272" y="520" width="7" height="28" rx="3.5" fill="#6bbf59"><title>2026-04-18: 9</title></rect><rect x="282" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-19: 8</title></rect><rect x="292" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-04-20: 0</title></rect><rect x="302" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-21: 1</title></rect><rect x="312" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-22: 2</title></rect><rect x="322" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-04-23: 0</title></rect><rect x="332" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-04-24: 0</title></rect><rect x="342" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-04-25: 0</title></rect><rect x="352" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-26: 1</title></rect><rect x="362" y="520" width="7" height="28" rx="3.5" fill="#198754"><title>2026-04-27: 17</title></rect><rect x="372" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-28: 3</title></rect><rect x="382" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-29: 1</title></rect><rect x="392" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-30: 5</title></rect><rect x="402" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-05-01: 0</title></rect><rect x="412" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-05-02: 2</title></rect><rect x="422" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-05-03: 6</title></rect><rect x="432" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-05-04: 7</title></rect><rect x="442" y="520" width="7" height="28" rx="3.5" fill="#0f5132"><title>2026-05-05: 34</title></rect><rect x="452" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-05-06: 3</title></rect><rect x="462" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-05-07: 6</title></rect><rect x="472" y="520" width="7" height="28" rx="3.5" fill="#198754"><title>2026-05-08: 23</title></rect><rect x="482" y="520" width="7" height="28" rx="3.5" fill="#6bbf59"><title>2026-05-09: 10</title></rect><rect x="492" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-05-10: 5</title></rect><rect x="502" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-05-11: 7</title></rect><rect x="512" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-05-12: 4</title></rect><rect x="522" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-05-13: 1</title></rect><rect x="532" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-05-14: 5</title></rect>
+  <rect x="52" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-03-27: 0</title></rect><rect x="62" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-03-28: 0</title></rect><rect x="72" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-03-29: 0</title></rect><rect x="82" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-03-30: 0</title></rect><rect x="92" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-03-31: 5</title></rect><rect x="102" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-04-01: 0</title></rect><rect x="112" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-02: 4</title></rect><rect x="122" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-03: 1</title></rect><rect x="132" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-04: 1</title></rect><rect x="142" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-05: 1</title></rect><rect x="152" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-06: 3</title></rect><rect x="162" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-07: 1</title></rect><rect x="172" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-08: 3</title></rect><rect x="182" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-09: 6</title></rect><rect x="192" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-10: 2</title></rect><rect x="202" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-04-11: 0</title></rect><rect x="212" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-04-12: 0</title></rect><rect x="222" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-04-13: 0</title></rect><rect x="232" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-14: 1</title></rect><rect x="242" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-15: 1</title></rect><rect x="252" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-16: 2</title></rect><rect x="262" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-17: 5</title></rect><rect x="272" y="520" width="7" height="28" rx="3.5" fill="#6bbf59"><title>2026-04-18: 9</title></rect><rect x="282" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-19: 8</title></rect><rect x="292" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-04-20: 0</title></rect><rect x="302" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-21: 1</title></rect><rect x="312" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-22: 2</title></rect><rect x="322" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-04-23: 0</title></rect><rect x="332" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-04-24: 0</title></rect><rect x="342" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-04-25: 0</title></rect><rect x="352" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-26: 1</title></rect><rect x="362" y="520" width="7" height="28" rx="3.5" fill="#198754"><title>2026-04-27: 17</title></rect><rect x="372" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-28: 3</title></rect><rect x="382" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-29: 1</title></rect><rect x="392" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-04-30: 5</title></rect><rect x="402" y="520" width="7" height="28" rx="3.5" fill="#e9eee8"><title>2026-05-01: 0</title></rect><rect x="412" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-05-02: 2</title></rect><rect x="422" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-05-03: 6</title></rect><rect x="432" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-05-04: 7</title></rect><rect x="442" y="520" width="7" height="28" rx="3.5" fill="#0f5132"><title>2026-05-05: 34</title></rect><rect x="452" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-05-06: 3</title></rect><rect x="462" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-05-07: 6</title></rect><rect x="472" y="520" width="7" height="28" rx="3.5" fill="#198754"><title>2026-05-08: 23</title></rect><rect x="482" y="520" width="7" height="28" rx="3.5" fill="#6bbf59"><title>2026-05-09: 9</title></rect><rect x="492" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-05-10: 6</title></rect><rect x="502" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-05-11: 7</title></rect><rect x="512" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-05-12: 4</title></rect><rect x="522" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-05-13: 1</title></rect><rect x="532" y="520" width="7" height="28" rx="3.5" fill="#b7e4a8"><title>2026-05-14: 7</title></rect>
 </g>
 
 
@@ -158,12 +158,12 @@
   <text x="636" y="360" fill="#6c7a76" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
     Public owned repositories
   </text>
-  <path d="M 712 402 L 661.62 350.56 A 72 72 0 1 0 712.00 330.00 Z" fill="#3572A5"><title>Python</title></path>
-<path d="M 712 402 L 680.84 337.09 A 72 72 0 0 0 661.62 350.56 Z" fill="#3178c6"><title>TypeScript</title></path>
-<path d="M 712 402 L 696.34 331.72 A 72 72 0 0 0 680.84 337.09 Z" fill="#DA5B0B"><title>Jupyter Notebook</title></path>
-<path d="M 712 402 L 699.98 331.01 A 72 72 0 0 0 696.34 331.72 Z" fill="#f34b7d"><title>C++</title></path>
-<path d="M 712 402 L 703.40 330.52 A 72 72 0 0 0 699.98 331.01 Z" fill="#e16737"><title>MATLAB</title></path>
-<path d="M 712 402 L 706.78 330.19 A 72 72 0 0 0 703.40 330.52 Z" fill="#fedf5b"><title>Cython</title></path>
+  <path d="M 712 402 L 661.68 350.50 A 72 72 0 1 0 712.00 330.00 Z" fill="#3572A5"><title>Python</title></path>
+<path d="M 712 402 L 680.88 337.07 A 72 72 0 0 0 661.68 350.50 Z" fill="#3178c6"><title>TypeScript</title></path>
+<path d="M 712 402 L 696.36 331.72 A 72 72 0 0 0 680.88 337.07 Z" fill="#DA5B0B"><title>Jupyter Notebook</title></path>
+<path d="M 712 402 L 699.99 331.01 A 72 72 0 0 0 696.36 331.72 Z" fill="#f34b7d"><title>C++</title></path>
+<path d="M 712 402 L 703.41 330.51 A 72 72 0 0 0 699.99 331.01 Z" fill="#e16737"><title>MATLAB</title></path>
+<path d="M 712 402 L 706.78 330.19 A 72 72 0 0 0 703.41 330.51 Z" fill="#fedf5b"><title>Cython</title></path>
 <path d="M 712 402 L 712.00 330.00 A 72 72 0 0 0 706.78 330.19 Z" fill="#8d99ae"><title>Other</title></path>
   
 <g>
@@ -204,7 +204,7 @@
 <g>
   <rect x="796" y="460" width="10" height="10" rx="3" fill="#fedf5b"/>
   <text x="812" y="470" fill="#17352e" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="11" font-weight="700">Cython</text>
-  <text x="812" y="483" fill="#6c7a76" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="10">0.8%</text>
+  <text x="812" y="483" fill="#6c7a76" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="10">0.7%</text>
 </g>
 
 </g>
@@ -212,10 +212,10 @@
 
 <g>
   <text x="612" y="574" fill="#53645f" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
-    Source scan: 30 repos scanned • 498 files • 62,781 nonblank lines
+    Source scan: 30 repos scanned • 491 files • 62,571 nonblank lines
   </text>
   <text x="52" y="574" fill="#53645f" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
-    Fire graphic source: OpenMoji 1F525 • Generated 2026-05-14T18:42:38Z
+    Fire graphic source: OpenMoji 1F525 • Generated 2026-05-14T18:44:16Z
   </text>
 </g>
 
