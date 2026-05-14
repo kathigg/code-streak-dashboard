@@ -49,6 +49,16 @@ class RecentDayMetric:
 
 
 @dataclass(frozen=True)
+class StreakAwardMetric:
+    threshold: int
+    title: str
+    subtitle: str
+    color: str
+    unlocked: bool
+    active: bool
+
+
+@dataclass(frozen=True)
 class DashboardMetrics:
     username: str
     display_name: str
@@ -72,6 +82,7 @@ class DashboardMetrics:
     languages: list[LanguageMetric]
     monthly: list[MonthMetric]
     recent_days: list[RecentDayMetric]
+    awards: list[StreakAwardMetric]
 
 
 def build_metrics(
@@ -92,13 +103,15 @@ def build_metrics(
 
     languages = _language_metrics(profile)
     total_contributions = profile.total_contributions or sum(complete_days.values())
+    streak = current_streak(complete_days, today=today)
+    best_streak = longest_streak(complete_days)
 
     return DashboardMetrics(
         username=profile.username,
         display_name=profile.display_name or profile.username,
         generated_at=datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
-        current_streak=current_streak(complete_days, today=today),
-        longest_streak=longest_streak(complete_days),
+        current_streak=streak,
+        longest_streak=best_streak,
         active_days=sum(1 for count in complete_days.values() if count > 0),
         total_contributions=total_contributions,
         commit_contributions=profile.commit_contributions,
@@ -119,6 +132,7 @@ def build_metrics(
             RecentDayMetric(date=day.isoformat(), count=complete_days.get(day, 0))
             for day in (today - timedelta(days=offset) for offset in range(48, -1, -1))
         ],
+        awards=streak_awards(current_streak=streak, longest_streak=best_streak),
     )
 
 
@@ -167,6 +181,36 @@ def monthly_metrics(contributions: dict[date, int], today: date) -> list[MonthMe
         )
         totals.append(MonthMetric(key=month.strftime("%Y-%m"), label=month.strftime("%b"), count=count))
     return totals
+
+
+def streak_awards(current_streak: int, longest_streak: int) -> list[StreakAwardMetric]:
+    """Return GitHub-achievement-style streak prizes.
+
+    Awards stay unlocked once the longest streak reaches the milestone, while
+    the active award highlights the current live streak tier.
+    """
+
+    definitions = [
+        (1, "First Spark", "Start the chain", "#f59e0b"),
+        (3, "Kindling", "3-day habit", "#ea580c"),
+        (7, "Hot Week", "7-day streak", "#dc2626"),
+        (14, "Bonfire", "14-day run", "#b45309"),
+        (30, "Forge", "30-day streak", "#7c3aed"),
+        (60, "Inferno", "60-day streak", "#be123c"),
+        (100, "Century Flame", "100-day streak", "#0f766e"),
+        (365, "Phoenix Year", "365-day streak", "#1d4ed8"),
+    ]
+    return [
+        StreakAwardMetric(
+            threshold=threshold,
+            title=title,
+            subtitle=subtitle,
+            color=color,
+            unlocked=longest_streak >= threshold,
+            active=current_streak >= threshold,
+        )
+        for threshold, title, subtitle, color in definitions
+    ]
 
 
 def _language_metrics(profile: GitHubProfileData) -> list[LanguageMetric]:

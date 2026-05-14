@@ -5,11 +5,11 @@ import json
 import math
 from pathlib import Path
 
-from .metrics import DashboardMetrics, LanguageMetric
+from .metrics import DashboardMetrics, LanguageMetric, StreakAwardMetric
 
 
 WIDTH = 920
-HEIGHT = 620
+HEIGHT = 760
 OPENMOJI_FIRE_SOURCE = "https://openmoji.org/library/emoji-1F525/"
 
 
@@ -30,23 +30,24 @@ def render_dashboard_svg(metrics: DashboardMetrics) -> str:
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}" role="img" aria-labelledby="title desc">',
         f"<title id=\"title\">{_e(metrics.username)} coding streak dashboard</title>",
-        "<desc id=\"desc\">GitHub profile dashboard showing coding streak, contribution graph, comments, tests, and language pie chart.</desc>",
+        "<desc id=\"desc\">GitHub profile dashboard showing coding streak, streak awards, contribution graph, comments, tests, and language pie chart.</desc>",
         _defs(),
-        '<rect width="920" height="620" rx="34" fill="url(#bg)"/>',
-        '<rect x="18" y="18" width="884" height="584" rx="28" fill="#fff8ec" opacity="0.92"/>',
-        '<rect x="18" y="18" width="884" height="584" rx="28" fill="url(#grain)" opacity="0.32"/>',
+        f'<rect width="{WIDTH}" height="{HEIGHT}" rx="34" fill="url(#bg)"/>',
+        '<rect x="18" y="18" width="884" height="724" rx="28" fill="#fff8ec" opacity="0.92"/>',
+        '<rect x="18" y="18" width="884" height="724" rx="28" fill="url(#grain)" opacity="0.32"/>',
         _header(metrics),
         _streak_card(metrics),
         _metric_card(356, 120, "Active days", f"{metrics.active_days}", "days with contributions", "#0f766e"),
         _metric_card(536, 120, "Comments", f"{metrics.comment_lines:,}", "comment lines scanned", "#b45309"),
         _metric_card(716, 120, "Tests", f"{test_value:,}", _test_caption(metrics), "#2563eb"),
+        _awards_card(metrics),
         _activity_chart(metrics, max_month),
         _recent_grid(metrics),
         _language_pie(metrics, language_total),
         _footer(metrics),
         "</svg>",
     ]
-    return "\n".join(parts)
+    return "\n".join(line.rstrip() for line in "\n".join(parts).splitlines()) + "\n"
 
 
 def _defs() -> str:
@@ -123,8 +124,76 @@ def _metric_card(x: int, y: int, title: str, value: str, caption: str, color: st
 """
 
 
+def _awards_card(metrics: DashboardMetrics) -> str:
+    next_award = next((award for award in metrics.awards if not award.unlocked), None)
+    if next_award:
+        progress = min(metrics.current_streak / next_award.threshold, 1)
+        days_remaining = max(next_award.threshold - metrics.current_streak, 0)
+        day_word = "day" if days_remaining == 1 else "days"
+        progress_label = f"{days_remaining} {day_word} to {next_award.title}"
+    else:
+        progress = 1
+        progress_label = "All streak awards unlocked"
+    progress_width = 248 * progress
+    badges = "\n".join(
+        _award_badge(78 + index * 98, 316, award)
+        for index, award in enumerate(metrics.awards[:8])
+    )
+    return f"""
+<g filter="url(#softShadow)">
+  <rect x="52" y="282" width="816" height="130" rx="24" fill="#fffdf7"/>
+  <text x="80" y="314" fill="#17352e" font-family="Georgia, 'Trebuchet MS', serif" font-size="22" font-weight="800">
+    Streak awards
+  </text>
+  <text x="236" y="314" fill="#6c7a76" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
+    GitHub-style milestone prizes
+  </text>
+  <rect x="592" y="300" width="248" height="10" rx="5" fill="#e9eee8"/>
+  <rect x="592" y="300" width="{progress_width:.1f}" height="10" rx="5" fill="#f59e0b"/>
+  <text x="840" y="329" text-anchor="end" fill="#53645f" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
+    {_e(progress_label)}
+  </text>
+  {badges}
+</g>
+"""
+
+
+def _award_badge(x: int, y: int, award: StreakAwardMetric) -> str:
+    display_title = _award_display_title(award.title)
+    fill = award.color if award.unlocked else "#d8ded8"
+    text_fill = "#fff8ec" if award.unlocked else "#6c7a76"
+    subtitle_fill = "#53645f" if award.unlocked else "#8a9692"
+    opacity = "1" if award.unlocked else "0.72"
+    stroke = "#17352e" if award.active else "#fffdf7"
+    return f"""
+<g opacity="{opacity}">
+  <title>{_e(award.title)}: {_e(award.subtitle)}</title>
+  <path d="M{x + 28} {y} L{x + 54} {y + 14} L{x + 54} {y + 44} L{x + 28} {y + 58} L{x + 2} {y + 44} L{x + 2} {y + 14} Z" fill="{fill}" stroke="{stroke}" stroke-width="3"/>
+  <circle cx="{x + 28}" cy="{y + 29}" r="17" fill="#fff8ec" opacity="0.18"/>
+  <text x="{x + 28}" y="{y + 35}" text-anchor="middle" fill="{text_fill}" font-family="Georgia, 'Trebuchet MS', serif" font-size="16" font-weight="900">
+    {award.threshold}d
+  </text>
+  <text x="{x + 28}" y="{y + 78}" text-anchor="middle" fill="#17352e" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="10" font-weight="800">
+    {_e(display_title)}
+  </text>
+  <text x="{x + 28}" y="{y + 92}" text-anchor="middle" fill="{subtitle_fill}" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="9">
+    {_e("Unlocked" if award.unlocked else "Locked")}
+  </text>
+</g>
+"""
+
+
+def _award_display_title(title: str) -> str:
+    short_names = {
+        "First Spark": "Spark",
+        "Century Flame": "Century",
+        "Phoenix Year": "Phoenix",
+    }
+    return short_names.get(title, title.split()[0])
+
+
 def _activity_chart(metrics: DashboardMetrics, max_month: int) -> str:
-    x0, y0, width, height = 52, 306, 520, 190
+    x0, y0, width, height = 52, 424, 520, 190
     chart_x, chart_y, chart_w, chart_h = x0 + 28, y0 + 50, width - 58, 92
     step = chart_w / max(1, len(metrics.monthly) - 1)
     points = []
@@ -163,7 +232,7 @@ def _activity_chart(metrics: DashboardMetrics, max_month: int) -> str:
 
 
 def _recent_grid(metrics: DashboardMetrics) -> str:
-    x0, y0 = 52, 520
+    x0, y0 = 52, 638
     cells = []
     max_count = max((day.count for day in metrics.recent_days), default=1) or 1
     for index, day in enumerate(metrics.recent_days):
@@ -184,13 +253,13 @@ def _recent_grid(metrics: DashboardMetrics) -> str:
 
 
 def _language_pie(metrics: DashboardMetrics, total: int) -> str:
-    x0, y0 = 612, 306
+    x0, y0 = 612, 424
     if not metrics.languages or total <= 0:
-        pie = '<circle cx="712" cy="398" r="70" fill="#e9eee8"/>'
-        legend = '<text x="612" y="508" fill="#6c7a76" font-size="13" font-family="\'Trebuchet MS\', Verdana, sans-serif">No language bytes found yet.</text>'
+        pie = '<circle cx="712" cy="520" r="70" fill="#e9eee8"/>'
+        legend = '<text x="636" y="630" fill="#6c7a76" font-size="13" font-family="\'Trebuchet MS\', Verdana, sans-serif">No language bytes found yet.</text>'
     else:
-        pie = _pie_paths(metrics.languages, 712, 402, 72)
-        legend = _language_legend(metrics.languages, 796, 350)
+        pie = _pie_paths(metrics.languages, 712, 520, 72)
+        legend = _language_legend(metrics.languages, 796, 468)
     return f"""
 <g filter="url(#softShadow)">
   <rect x="{x0}" y="{y0}" width="256" height="242" rx="24" fill="#fffdf7"/>
@@ -212,10 +281,10 @@ def _footer(metrics: DashboardMetrics) -> str:
         scan_note += f", {metrics.failed_repositories} skipped"
     return f"""
 <g>
-  <text x="612" y="574" fill="#53645f" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
+  <text x="612" y="716" fill="#53645f" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
     Source scan: {_e(scan_note)} • {metrics.source_files:,} files • {metrics.source_lines:,} nonblank lines
   </text>
-  <text x="52" y="574" fill="#53645f" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
+  <text x="52" y="716" fill="#53645f" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="12">
     Fire graphic source: OpenMoji 1F525 • Generated {metrics.generated_at}
   </text>
 </g>
@@ -327,6 +396,17 @@ def _metrics_json(metrics: DashboardMetrics) -> dict[str, object]:
                 "color": language.color,
             }
             for language in metrics.languages
+        ],
+        "awards": [
+            {
+                "threshold": award.threshold,
+                "title": award.title,
+                "subtitle": award.subtitle,
+                "unlocked": award.unlocked,
+                "active": award.active,
+                "color": award.color,
+            }
+            for award in metrics.awards
         ],
         "monthly": [{"month": month.key, "count": month.count} for month in metrics.monthly],
     }

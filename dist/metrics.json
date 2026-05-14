@@ -1,10 +1,76 @@
 {
-  "active_days": 177,
+  "active_days": 176,
+  "awards": [
+    {
+      "active": true,
+      "color": "#f59e0b",
+      "subtitle": "Start the chain",
+      "threshold": 1,
+      "title": "First Spark",
+      "unlocked": true
+    },
+    {
+      "active": true,
+      "color": "#ea580c",
+      "subtitle": "3-day habit",
+      "threshold": 3,
+      "title": "Kindling",
+      "unlocked": true
+    },
+    {
+      "active": true,
+      "color": "#dc2626",
+      "subtitle": "7-day streak",
+      "threshold": 7,
+      "title": "Hot Week",
+      "unlocked": true
+    },
+    {
+      "active": false,
+      "color": "#b45309",
+      "subtitle": "14-day run",
+      "threshold": 14,
+      "title": "Bonfire",
+      "unlocked": false
+    },
+    {
+      "active": false,
+      "color": "#7c3aed",
+      "subtitle": "30-day streak",
+      "threshold": 30,
+      "title": "Forge",
+      "unlocked": false
+    },
+    {
+      "active": false,
+      "color": "#be123c",
+      "subtitle": "60-day streak",
+      "threshold": 60,
+      "title": "Inferno",
+      "unlocked": false
+    },
+    {
+      "active": false,
+      "color": "#0f766e",
+      "subtitle": "100-day streak",
+      "threshold": 100,
+      "title": "Century Flame",
+      "unlocked": false
+    },
+    {
+      "active": false,
+      "color": "#1d4ed8",
+      "subtitle": "365-day streak",
+      "threshold": 365,
+      "title": "Phoenix Year",
+      "unlocked": false
+    }
+  ],
   "comments": {
     "lines": 3553
   },
   "current_streak": 13,
-  "generated_at": "2026-05-14T18:48:58Z",
+  "generated_at": "2026-05-14T18:54:44Z",
   "languages": [
     {
       "color": "#3572A5",
@@ -96,7 +162,7 @@
       "month": "2026-04"
     },
     {
-      "count": 117,
+      "count": 118,
       "month": "2026-05"
     }
   ],
@@ -111,6 +177,6 @@
     "files": 16,
     "lines": 1156
   },
-  "total_contributions": 1099,
+  "total_contributions": 1100,
   "username": "kathigg"
 }

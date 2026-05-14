@@ -4,7 +4,7 @@ import unittest
 from datetime import date, timedelta
 
 from code_streak_dashboard.github_api import ContributionDay, GitHubProfileData, RepositoryInfo
-from code_streak_dashboard.metrics import build_metrics, current_streak, longest_streak
+from code_streak_dashboard.metrics import build_metrics, current_streak, longest_streak, streak_awards
 from code_streak_dashboard.scanner import ScanStats
 
 
@@ -77,6 +77,16 @@ class MetricsTest(unittest.TestCase):
         self.assertEqual(metrics.test_cases, 2)
         self.assertEqual(metrics.languages[0].name, "Python")
         self.assertEqual(round(metrics.languages[0].percent, 1), 0.8)
+        self.assertEqual(metrics.awards[0].title, "First Spark")
+        self.assertTrue(metrics.awards[0].unlocked)
+
+    def test_streak_awards_unlock_by_longest_and_activate_by_current(self) -> None:
+        awards = streak_awards(current_streak=13, longest_streak=30)
+        by_threshold = {award.threshold: award for award in awards}
+
+        self.assertTrue(by_threshold[30].unlocked)
+        self.assertFalse(by_threshold[30].active)
+        self.assertFalse(by_threshold[60].unlocked)
 
 
 if __name__ == "__main__":
