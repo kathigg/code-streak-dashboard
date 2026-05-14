@@ -9,8 +9,8 @@ from .metrics import DashboardMetrics, StreakAwardMetric
 
 WIDTH = 920
 HEIGHT = 760
-FONT = "'Space Grotesk', 'Segoe UI', Helvetica, Arial, sans-serif"
-MONO_FONT = "'SFMono-Regular', 'Cascadia Mono', 'Roboto Mono', monospace"
+FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+MONO_FONT = "ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace"
 
 
 def write_outputs(metrics: DashboardMetrics, output_dir: Path) -> None:
@@ -31,14 +31,13 @@ def render_dashboard_svg(metrics: DashboardMetrics) -> str:
         f"<title id=\"title\">{_e(metrics.username)} coding streak dashboard</title>",
         "<desc id=\"desc\">Coding streak dashboard.</desc>",
         _defs(),
-        f'<rect width="{WIDTH}" height="{HEIGHT}" rx="34" fill="#ffffff"/>',
-        '<rect x="18" y="18" width="884" height="724" rx="28" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>',
-        _accent_shapes(),
+        f'<rect width="{WIDTH}" height="{HEIGHT}" rx="24" fill="#ffffff"/>',
+        '<rect x="18" y="18" width="884" height="724" rx="16" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>',
         _header(metrics),
         _streak_card(metrics),
-        _metric_card(356, 120, "Active days", f"{metrics.active_days}", "#39ff14"),
-        _metric_card(536, 120, "Comments", f"{metrics.comment_lines:,}", "#ffb000"),
-        _metric_card(716, 120, "Tests", f"{test_value:,}", "#ff3d81"),
+        _metric_card(356, 120, "Active days", f"{metrics.active_days}", "#2da44e"),
+        _metric_card(536, 120, "Comments", f"{metrics.comment_lines:,}", "#0969da"),
+        _metric_card(716, 120, "Tests", f"{test_value:,}", "#bf8700"),
         _awards_card(metrics),
         _activity_chart(metrics, max_month),
         _recent_grid(metrics),
@@ -51,45 +50,23 @@ def _defs() -> str:
     return """
 <defs>
   <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
-    <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#0f172a" flood-opacity="0.06"/>
+    <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#1f2328" flood-opacity="0.04"/>
   </filter>
-  <linearGradient id="electricAccent" x1="0%" y1="0%" x2="100%" y2="0%">
-    <stop offset="0%" stop-color="#00e5ff"/>
-    <stop offset="38%" stop-color="#39ff14"/>
-    <stop offset="68%" stop-color="#ffb000"/>
-    <stop offset="100%" stop-color="#ff3d81"/>
-  </linearGradient>
-  <linearGradient id="flameAccent" x1="0%" y1="0%" x2="100%" y2="100%">
-    <stop offset="0%" stop-color="#fff700"/>
-    <stop offset="48%" stop-color="#ff8a00"/>
-    <stop offset="100%" stop-color="#ff3d81"/>
-  </linearGradient>
   <linearGradient id="chartWash" x1="0%" y1="0%" x2="0%" y2="100%">
-    <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.24"/>
-    <stop offset="100%" stop-color="#39ff14" stop-opacity="0.02"/>
+    <stop offset="0%" stop-color="#2da44e" stop-opacity="0.18"/>
+    <stop offset="100%" stop-color="#2da44e" stop-opacity="0.02"/>
   </linearGradient>
 </defs>
-"""
-
-
-def _accent_shapes() -> str:
-    return """
-<g opacity="0.95">
-  <circle cx="820" cy="86" r="42" fill="#00e5ff" opacity="0.08"/>
-  <circle cx="850" cy="110" r="26" fill="#ff3d81" opacity="0.08"/>
-  <circle cx="76" cy="704" r="34" fill="#39ff14" opacity="0.07"/>
-  <circle cx="832" cy="698" r="46" fill="#ffb000" opacity="0.06"/>
-</g>
 """
 
 
 def _header(metrics: DashboardMetrics) -> str:
     return f"""
 <g transform="translate(52 52)">
-  <text x="0" y="0" fill="#0f172a" font-family="{FONT}" font-size="32" font-weight="700" letter-spacing="-0.6">
+  <text x="0" y="0" fill="#24292f" font-family="{FONT}" font-size="32" font-weight="600" letter-spacing="-0.4">
     {_e(metrics.display_name)}'s code streak
   </text>
-  <line x1="0" y1="42" x2="816" y2="42" stroke="url(#electricAccent)" stroke-width="2" opacity="0.65"/>
+  <line x1="0" y1="42" x2="816" y2="42" stroke="#d8dee4" stroke-width="1"/>
 </g>
 """
 
@@ -97,17 +74,16 @@ def _header(metrics: DashboardMetrics) -> str:
 def _streak_card(metrics: DashboardMetrics) -> str:
     return f"""
 <g filter="url(#softShadow)">
-  <rect x="52" y="112" width="268" height="150" rx="24" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
-  <rect x="70" y="130" width="66" height="66" rx="18" fill="url(#flameAccent)" opacity="0.14"/>
-  <rect x="70" y="130" width="66" height="66" rx="18" fill="none" stroke="#ff8a00" stroke-width="1.4"/>
+  <rect x="52" y="112" width="268" height="150" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>
+  <rect x="70" y="130" width="66" height="66" rx="10" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1"/>
   {_fire_icon(78, 136, 52)}
-  <text x="168" y="136" fill="#64748b" font-family="{FONT}" font-size="12" font-weight="700" letter-spacing="0.9">
+  <text x="168" y="136" fill="#57606a" font-family="{FONT}" font-size="12" font-weight="600" letter-spacing="0.6">
     Current streak
   </text>
-  <text x="168" y="210" fill="#0f172a" font-family="{MONO_FONT}" font-size="56" font-weight="800">
+  <text x="168" y="210" fill="#24292f" font-family="{MONO_FONT}" font-size="56" font-weight="700">
     {metrics.current_streak}
   </text>
-  <line x1="70" y1="232" x2="302" y2="232" stroke="url(#electricAccent)" stroke-width="3" stroke-linecap="round"/>
+  <line x1="70" y1="232" x2="302" y2="232" stroke="#2da44e" stroke-width="3" stroke-linecap="round"/>
 </g>
 """
 
@@ -115,13 +91,13 @@ def _streak_card(metrics: DashboardMetrics) -> str:
 def _metric_card(x: int, y: int, title: str, value: str, accent: str) -> str:
     return f"""
 <g filter="url(#softShadow)">
-  <rect x="{x}" y="{y}" width="150" height="132" rx="22" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
-  <circle cx="{x + 126}" cy="{y + 26}" r="8" fill="{accent}" opacity="0.24"/>
+  <rect x="{x}" y="{y}" width="150" height="132" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>
+  <circle cx="{x + 126}" cy="{y + 26}" r="8" fill="{accent}" opacity="0.14"/>
   <line x1="{x + 24}" y1="{y + 26}" x2="{x + 58}" y2="{y + 26}" stroke="{accent}" stroke-width="3" stroke-linecap="round"/>
-  <text x="{x + 24}" y="{y + 48}" fill="#64748b" font-family="{FONT}" font-size="12" font-weight="700" letter-spacing="0.8">
+  <text x="{x + 24}" y="{y + 48}" fill="#57606a" font-family="{FONT}" font-size="12" font-weight="600" letter-spacing="0.6">
     {_e(title)}
   </text>
-  <text x="{x + 24}" y="{y + 96}" fill="#0f172a" font-family="{MONO_FONT}" font-size="34" font-weight="800">
+  <text x="{x + 24}" y="{y + 96}" fill="#24292f" font-family="{MONO_FONT}" font-size="34" font-weight="700">
     {_e(value)}
   </text>
 </g>
@@ -141,12 +117,12 @@ def _awards_card(metrics: DashboardMetrics) -> str:
     )
     return f"""
 <g filter="url(#softShadow)">
-  <rect x="52" y="282" width="816" height="130" rx="24" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
-  <text x="80" y="314" fill="#0f172a" font-family="{FONT}" font-size="20" font-weight="700" letter-spacing="-0.2">
+  <rect x="52" y="282" width="816" height="130" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>
+  <text x="80" y="314" fill="#24292f" font-family="{FONT}" font-size="20" font-weight="600" letter-spacing="-0.2">
     Streak awards
   </text>
-  <rect x="592" y="300" width="248" height="8" rx="4" fill="#e2e8f0"/>
-  <rect x="592" y="300" width="{progress_width:.1f}" height="8" rx="4" fill="url(#electricAccent)"/>
+  <rect x="592" y="300" width="248" height="8" rx="4" fill="#d8dee4"/>
+  <rect x="592" y="300" width="{progress_width:.1f}" height="8" rx="4" fill="#2da44e"/>
   {badges}
 </g>
 """
@@ -154,11 +130,11 @@ def _awards_card(metrics: DashboardMetrics) -> str:
 
 def _award_badge(x: int, y: int, award: StreakAwardMetric) -> str:
     display_title = _award_display_title(award.title)
-    threshold_fill = "#0f172a" if award.unlocked else "#94a3b8"
-    title_fill = "#0f172a" if award.unlocked else "#94a3b8"
-    circle_fill = "#ecfeff" if award.unlocked else "#f8fafc"
+    threshold_fill = "#24292f" if award.unlocked else "#8c959f"
+    title_fill = "#24292f" if award.unlocked else "#8c959f"
+    circle_fill = "#dafbe1" if award.unlocked else "#f6f8fa"
     opacity = "1" if award.unlocked else "0.62"
-    stroke = "url(#electricAccent)" if award.active else ("#39ff14" if award.unlocked else "#e2e8f0")
+    stroke = "#2da44e" if award.active else ("#40c463" if award.unlocked else "#d0d7de")
     return f"""
 <g opacity="{opacity}">
   <title>{_e(award.title)}</title>
@@ -196,23 +172,23 @@ def _activity_chart(metrics: DashboardMetrics, max_month: int) -> str:
         area_points.append(f"{x:.1f},{y:.1f}")
     area_points.append(f"{chart_x + chart_w},{chart_y + chart_h}")
     month_labels = "\n".join(
-        f'<text x="{chart_x + index * step:.1f}" y="{chart_y + chart_h + 28}" text-anchor="middle" fill="#94a3b8" font-family="{FONT}" font-size="10">{_e(month.label)}</text>'
+        f'<text x="{chart_x + index * step:.1f}" y="{chart_y + chart_h + 28}" text-anchor="middle" fill="#8c959f" font-family="{FONT}" font-size="10">{_e(month.label)}</text>'
         for index, month in enumerate(metrics.monthly)
     )
     value_labels = "\n".join(
-        f'<circle cx="{point.split(",")[0]}" cy="{point.split(",")[1]}" r="4" fill="#ffffff" stroke="#06b6d4" stroke-width="2"/>'
+        f'<circle cx="{point.split(",")[0]}" cy="{point.split(",")[1]}" r="4" fill="#ffffff" stroke="#2da44e" stroke-width="2"/>'
         for point in points
     )
     return f"""
 <g filter="url(#softShadow)">
-  <rect x="{x0}" y="{y0}" width="{width}" height="{height}" rx="24" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
-  <text x="{x0 + 28}" y="{y0 + 30}" fill="#0f172a" font-family="{FONT}" font-size="20" font-weight="700" letter-spacing="-0.2">
+  <rect x="{x0}" y="{y0}" width="{width}" height="{height}" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>
+  <text x="{x0 + 28}" y="{y0 + 30}" fill="#24292f" font-family="{FONT}" font-size="20" font-weight="600" letter-spacing="-0.2">
     Coding over time
   </text>
-  <line x1="{chart_x}" y1="{chart_y + chart_h}" x2="{chart_x + chart_w}" y2="{chart_y + chart_h}" stroke="#e2e8f0" stroke-width="1"/>
-  <line x1="{chart_x}" y1="{chart_y}" x2="{chart_x}" y2="{chart_y + chart_h}" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="{chart_x}" y1="{chart_y + chart_h}" x2="{chart_x + chart_w}" y2="{chart_y + chart_h}" stroke="#d8dee4" stroke-width="1"/>
+  <line x1="{chart_x}" y1="{chart_y}" x2="{chart_x}" y2="{chart_y + chart_h}" stroke="#d8dee4" stroke-width="1"/>
   <path d="M {' L '.join(area_points)} Z" fill="url(#chartWash)"/>
-  <polyline points="{' '.join(points)}" fill="none" stroke="url(#electricAccent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="{' '.join(points)}" fill="none" stroke="#2da44e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
   {value_labels}
   {month_labels}
 </g>
@@ -226,13 +202,13 @@ def _recent_grid(metrics: DashboardMetrics) -> str:
     for index, day in enumerate(metrics.recent_days):
         col = index % 49
         intensity = day.count / max_count
-        color = _heat_color(intensity) if day.count else "#e2e8f0"
+        color = _heat_color(intensity) if day.count else "#ebedf0"
         cells.append(
             f'<rect x="{x0 + col * 10}" y="{y0}" width="7" height="28" rx="3.5" fill="{color}"><title>{_e(day.date)}: {day.count}</title></rect>'
         )
     return f"""
 <g>
-  <text x="{x0}" y="{y0 - 18}" fill="#0f172a" font-family="{FONT}" font-size="13" font-weight="700">
+  <text x="{x0}" y="{y0 - 18}" fill="#24292f" font-family="{FONT}" font-size="13" font-weight="600">
     Last 49 days
   </text>
   {''.join(cells)}
@@ -255,12 +231,12 @@ def _fire_icon(x: int, y: int, size: int) -> str:
 
 def _heat_color(intensity: float) -> str:
     if intensity >= 0.75:
-        return "#ff3d81"
+        return "#216e39"
     if intensity >= 0.5:
-        return "#ffb000"
+        return "#30a14e"
     if intensity >= 0.25:
-        return "#39ff14"
-    return "#00e5ff"
+        return "#40c463"
+    return "#9be9a8"
 
 
 def _metrics_json(metrics: DashboardMetrics) -> dict[str, object]:
