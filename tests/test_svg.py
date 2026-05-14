@@ -22,8 +22,13 @@ class SvgTest(unittest.TestCase):
         self.assertTrue(svg.startswith("<svg"))
         self.assertIn("Coding over time", svg)
         self.assertIn("Streak awards", svg)
+        self.assertIn("#ff3d81", svg)
         self.assertNotIn("Language mix", svg)
-        self.assertIn("OpenMoji", svg)
+        self.assertNotIn("Contribution rhythm", svg)
+        self.assertNotIn("comment lines scanned", svg)
+        self.assertNotIn("milestone prizes", svg)
+        self.assertNotIn("Unlocked", svg)
+        self.assertNotIn("Locked", svg)
 
 
 if __name__ == "__main__":

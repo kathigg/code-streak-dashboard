@@ -9,7 +9,6 @@ from .metrics import DashboardMetrics, StreakAwardMetric
 
 WIDTH = 920
 HEIGHT = 760
-OPENMOJI_FIRE_SOURCE = "https://openmoji.org/library/emoji-1F525/"
 FONT = "'Space Grotesk', 'Segoe UI', Helvetica, Arial, sans-serif"
 MONO_FONT = "'SFMono-Regular', 'Cascadia Mono', 'Roboto Mono', monospace"
 
@@ -30,19 +29,19 @@ def render_dashboard_svg(metrics: DashboardMetrics) -> str:
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}" role="img" aria-labelledby="title desc">',
         f"<title id=\"title\">{_e(metrics.username)} coding streak dashboard</title>",
-        "<desc id=\"desc\">GitHub profile dashboard showing coding streak, streak awards, contribution graph, comments, and tests.</desc>",
+        "<desc id=\"desc\">Coding streak dashboard.</desc>",
         _defs(),
         f'<rect width="{WIDTH}" height="{HEIGHT}" rx="34" fill="#ffffff"/>',
         '<rect x="18" y="18" width="884" height="724" rx="28" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>',
+        _accent_shapes(),
         _header(metrics),
         _streak_card(metrics),
-        _metric_card(356, 120, "Active days", f"{metrics.active_days}", "days with contributions"),
-        _metric_card(536, 120, "Comments", f"{metrics.comment_lines:,}", "comment lines scanned"),
-        _metric_card(716, 120, "Tests", f"{test_value:,}", _test_caption(metrics)),
+        _metric_card(356, 120, "Active days", f"{metrics.active_days}", "#39ff14"),
+        _metric_card(536, 120, "Comments", f"{metrics.comment_lines:,}", "#ffb000"),
+        _metric_card(716, 120, "Tests", f"{test_value:,}", "#ff3d81"),
         _awards_card(metrics),
         _activity_chart(metrics, max_month),
         _recent_grid(metrics),
-        _footer(metrics),
         "</svg>",
     ]
     return "\n".join(line.rstrip() for line in "\n".join(parts).splitlines()) + "\n"
@@ -54,7 +53,33 @@ def _defs() -> str:
   <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
     <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#0f172a" flood-opacity="0.06"/>
   </filter>
+  <linearGradient id="electricAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#00e5ff"/>
+    <stop offset="38%" stop-color="#39ff14"/>
+    <stop offset="68%" stop-color="#ffb000"/>
+    <stop offset="100%" stop-color="#ff3d81"/>
+  </linearGradient>
+  <linearGradient id="flameAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#fff700"/>
+    <stop offset="48%" stop-color="#ff8a00"/>
+    <stop offset="100%" stop-color="#ff3d81"/>
+  </linearGradient>
+  <linearGradient id="chartWash" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.24"/>
+    <stop offset="100%" stop-color="#39ff14" stop-opacity="0.02"/>
+  </linearGradient>
 </defs>
+"""
+
+
+def _accent_shapes() -> str:
+    return """
+<g opacity="0.95">
+  <circle cx="820" cy="86" r="42" fill="#00e5ff" opacity="0.08"/>
+  <circle cx="850" cy="110" r="26" fill="#ff3d81" opacity="0.08"/>
+  <circle cx="76" cy="704" r="34" fill="#39ff14" opacity="0.07"/>
+  <circle cx="832" cy="698" r="46" fill="#ffb000" opacity="0.06"/>
+</g>
 """
 
 
@@ -64,48 +89,40 @@ def _header(metrics: DashboardMetrics) -> str:
   <text x="0" y="0" fill="#0f172a" font-family="{FONT}" font-size="32" font-weight="700" letter-spacing="-0.6">
     {_e(metrics.display_name)}'s code streak
   </text>
-  <text x="2" y="34" fill="#64748b" font-family="{FONT}" font-size="14">
-    Contribution rhythm, repository scan stats, and streak prizes for @{_e(metrics.username)}
-  </text>
-  <line x1="0" y1="54" x2="816" y2="54" stroke="#e5e7eb" stroke-width="1"/>
+  <line x1="0" y1="42" x2="816" y2="42" stroke="url(#electricAccent)" stroke-width="2" opacity="0.65"/>
 </g>
 """
 
 
 def _streak_card(metrics: DashboardMetrics) -> str:
-    streak_word = "day" if metrics.current_streak == 1 else "days"
     return f"""
 <g filter="url(#softShadow)">
   <rect x="52" y="112" width="268" height="150" rx="24" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
-  <rect x="70" y="130" width="66" height="66" rx="18" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="70" y="130" width="66" height="66" rx="18" fill="url(#flameAccent)" opacity="0.14"/>
+  <rect x="70" y="130" width="66" height="66" rx="18" fill="none" stroke="#ff8a00" stroke-width="1.4"/>
   {_fire_icon(78, 136, 52)}
-  <text x="168" y="168" fill="#0f172a" font-family="{MONO_FONT}" font-size="48" font-weight="800">
+  <text x="168" y="136" fill="#64748b" font-family="{FONT}" font-size="12" font-weight="700" letter-spacing="0.9">
+    Current streak
+  </text>
+  <text x="168" y="210" fill="#0f172a" font-family="{MONO_FONT}" font-size="56" font-weight="800">
     {metrics.current_streak}
   </text>
-  <text x="170" y="196" fill="#0891b2" font-family="{FONT}" font-size="16" font-weight="700">
-    {streak_word} in a row
-  </text>
-  <text x="170" y="222" fill="#64748b" font-family="{FONT}" font-size="13">
-    Longest streak: {metrics.longest_streak} days
-  </text>
-  <line x1="70" y1="232" x2="302" y2="232" stroke="#e5e7eb" stroke-width="1"/>
+  <line x1="70" y1="232" x2="302" y2="232" stroke="url(#electricAccent)" stroke-width="3" stroke-linecap="round"/>
 </g>
 """
 
 
-def _metric_card(x: int, y: int, title: str, value: str, caption: str) -> str:
+def _metric_card(x: int, y: int, title: str, value: str, accent: str) -> str:
     return f"""
 <g filter="url(#softShadow)">
   <rect x="{x}" y="{y}" width="150" height="132" rx="22" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
-  <line x1="{x + 24}" y1="{y + 26}" x2="{x + 50}" y2="{y + 26}" stroke="#06b6d4" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="{x + 126}" cy="{y + 26}" r="8" fill="{accent}" opacity="0.24"/>
+  <line x1="{x + 24}" y1="{y + 26}" x2="{x + 58}" y2="{y + 26}" stroke="{accent}" stroke-width="3" stroke-linecap="round"/>
   <text x="{x + 24}" y="{y + 48}" fill="#64748b" font-family="{FONT}" font-size="12" font-weight="700" letter-spacing="0.8">
     {_e(title)}
   </text>
-  <text x="{x + 24}" y="{y + 86}" fill="#0f172a" font-family="{MONO_FONT}" font-size="30" font-weight="800">
+  <text x="{x + 24}" y="{y + 96}" fill="#0f172a" font-family="{MONO_FONT}" font-size="34" font-weight="800">
     {_e(value)}
-  </text>
-  <text x="{x + 24}" y="{y + 110}" fill="#94a3b8" font-family="{FONT}" font-size="11">
-    {_e(caption)}
   </text>
 </g>
 """
@@ -115,12 +132,8 @@ def _awards_card(metrics: DashboardMetrics) -> str:
     next_award = next((award for award in metrics.awards if not award.unlocked), None)
     if next_award:
         progress = min(metrics.current_streak / next_award.threshold, 1)
-        days_remaining = max(next_award.threshold - metrics.current_streak, 0)
-        day_word = "day" if days_remaining == 1 else "days"
-        progress_label = f"{days_remaining} {day_word} to {next_award.title}"
     else:
         progress = 1
-        progress_label = "All streak awards unlocked"
     progress_width = 248 * progress
     badges = "\n".join(
         _award_badge(78 + index * 98, 316, award)
@@ -132,14 +145,8 @@ def _awards_card(metrics: DashboardMetrics) -> str:
   <text x="80" y="314" fill="#0f172a" font-family="{FONT}" font-size="20" font-weight="700" letter-spacing="-0.2">
     Streak awards
   </text>
-  <text x="254" y="314" fill="#94a3b8" font-family="{FONT}" font-size="12">
-    milestone prizes
-  </text>
   <rect x="592" y="300" width="248" height="8" rx="4" fill="#e2e8f0"/>
-  <rect x="592" y="300" width="{progress_width:.1f}" height="8" rx="4" fill="#06b6d4"/>
-  <text x="840" y="329" text-anchor="end" fill="#64748b" font-family="{FONT}" font-size="12">
-    {_e(progress_label)}
-  </text>
+  <rect x="592" y="300" width="{progress_width:.1f}" height="8" rx="4" fill="url(#electricAccent)"/>
   {badges}
 </g>
 """
@@ -149,22 +156,19 @@ def _award_badge(x: int, y: int, award: StreakAwardMetric) -> str:
     display_title = _award_display_title(award.title)
     threshold_fill = "#0f172a" if award.unlocked else "#94a3b8"
     title_fill = "#0f172a" if award.unlocked else "#94a3b8"
-    subtitle_fill = "#0891b2" if award.unlocked else "#cbd5e1"
+    circle_fill = "#ecfeff" if award.unlocked else "#f8fafc"
     opacity = "1" if award.unlocked else "0.62"
-    stroke = "#06b6d4" if award.active else "#e2e8f0"
+    stroke = "url(#electricAccent)" if award.active else ("#39ff14" if award.unlocked else "#e2e8f0")
     return f"""
 <g opacity="{opacity}">
-  <title>{_e(award.title)}: {_e(award.subtitle)}</title>
+  <title>{_e(award.title)}</title>
   <path d="M{x + 28} {y} L{x + 54} {y + 14} L{x + 54} {y + 44} L{x + 28} {y + 58} L{x + 2} {y + 44} L{x + 2} {y + 14} Z" fill="#ffffff" stroke="{stroke}" stroke-width="3"/>
-  <circle cx="{x + 28}" cy="{y + 29}" r="17" fill="#f8fafc"/>
+  <circle cx="{x + 28}" cy="{y + 29}" r="17" fill="{circle_fill}"/>
   <text x="{x + 28}" y="{y + 35}" text-anchor="middle" fill="{threshold_fill}" font-family="{MONO_FONT}" font-size="14" font-weight="800">
     {award.threshold}d
   </text>
-  <text x="{x + 28}" y="{y + 78}" text-anchor="middle" fill="{title_fill}" font-family="{FONT}" font-size="10" font-weight="700">
+  <text x="{x + 28}" y="{y + 82}" text-anchor="middle" fill="{title_fill}" font-family="{FONT}" font-size="10" font-weight="700">
     {_e(display_title)}
-  </text>
-  <text x="{x + 28}" y="{y + 92}" text-anchor="middle" fill="{subtitle_fill}" font-family="{FONT}" font-size="9">
-    {_e("Unlocked" if award.unlocked else "Locked")}
   </text>
 </g>
 """
@@ -205,13 +209,10 @@ def _activity_chart(metrics: DashboardMetrics, max_month: int) -> str:
   <text x="{x0 + 28}" y="{y0 + 30}" fill="#0f172a" font-family="{FONT}" font-size="20" font-weight="700" letter-spacing="-0.2">
     Coding over time
   </text>
-  <text x="{x0 + width - 28}" y="{y0 + 30}" text-anchor="end" fill="#64748b" font-family="{FONT}" font-size="12">
-    {metrics.total_contributions:,} contributions / 365 days
-  </text>
   <line x1="{chart_x}" y1="{chart_y + chart_h}" x2="{chart_x + chart_w}" y2="{chart_y + chart_h}" stroke="#e2e8f0" stroke-width="1"/>
   <line x1="{chart_x}" y1="{chart_y}" x2="{chart_x}" y2="{chart_y + chart_h}" stroke="#e2e8f0" stroke-width="1"/>
-  <path d="M {' L '.join(area_points)} Z" fill="#06b6d4" opacity="0.08"/>
-  <polyline points="{' '.join(points)}" fill="none" stroke="#06b6d4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M {' L '.join(area_points)} Z" fill="url(#chartWash)"/>
+  <polyline points="{' '.join(points)}" fill="none" stroke="url(#electricAccent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
   {value_labels}
   {month_labels}
 </g>
@@ -239,22 +240,6 @@ def _recent_grid(metrics: DashboardMetrics) -> str:
 """
 
 
-def _footer(metrics: DashboardMetrics) -> str:
-    scan_note = f"{metrics.scanned_repositories} repos scanned"
-    if metrics.failed_repositories:
-        scan_note += f", {metrics.failed_repositories} skipped"
-    return f"""
-<g>
-  <text x="52" y="716" fill="#94a3b8" font-family="{FONT}" font-size="11">
-    Fire graphic source: OpenMoji 1F525 • Generated {metrics.generated_at}
-  </text>
-  <text x="868" y="716" text-anchor="end" fill="#94a3b8" font-family="{FONT}" font-size="11">
-    Source scan: {_e(scan_note)} • {metrics.source_files:,} files • {metrics.source_lines:,} nonblank lines
-  </text>
-</g>
-"""
-
-
 def _fire_icon(x: int, y: int, size: int) -> str:
     scale = size / 72
     # Based on OpenMoji FIRE (1F525), CC BY-SA 4.0: https://openmoji.org/library/emoji-1F525/
@@ -270,18 +255,12 @@ def _fire_icon(x: int, y: int, size: int) -> str:
 
 def _heat_color(intensity: float) -> str:
     if intensity >= 0.75:
-        return "#0891b2"
+        return "#ff3d81"
     if intensity >= 0.5:
-        return "#22d3ee"
+        return "#ffb000"
     if intensity >= 0.25:
-        return "#67e8f9"
-    return "#cffafe"
-
-
-def _test_caption(metrics: DashboardMetrics) -> str:
-    if metrics.test_cases:
-        return f"{metrics.test_files:,} files detected"
-    return f"{metrics.test_lines:,} test lines"
+        return "#39ff14"
+    return "#00e5ff"
 
 
 def _metrics_json(metrics: DashboardMetrics) -> dict[str, object]:
