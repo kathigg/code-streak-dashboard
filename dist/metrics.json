@@ -1,5 +1,5 @@
 {
-  "active_days": 186,
+  "active_days": 185,
   "awards": [
     {
       "active": true,
@@ -70,7 +70,7 @@
     "lines": 3562
   },
   "current_streak": 2,
-  "generated_at": "2026-06-30T12:27:15Z",
+  "generated_at": "2026-07-01T13:14:48Z",
   "languages": [
     {
       "color": "#3572A5",
@@ -118,10 +118,6 @@
   "longest_streak": 14,
   "monthly": [
     {
-      "count": 211,
-      "month": "2025-07"
-    },
-    {
       "count": 21,
       "month": "2025-08"
     },
@@ -162,8 +158,12 @@
       "month": "2026-05"
     },
     {
-      "count": 178,
+      "count": 180,
       "month": "2026-06"
+    },
+    {
+      "count": 0,
+      "month": "2026-07"
     }
   ],
   "source_scan": {
@@ -177,6 +177,6 @@
     "files": 8,
     "lines": 246
   },
-  "total_contributions": 1210,
+  "total_contributions": 1191,
   "username": "kathigg"
 }
