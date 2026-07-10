@@ -10,7 +10,7 @@
       "unlocked": true
     },
     {
-      "active": false,
+      "active": true,
       "color": "#ea580c",
       "subtitle": "3-day habit",
       "threshold": 3,
@@ -69,14 +69,14 @@
   "comments": {
     "lines": 3562
   },
-  "current_streak": 1,
-  "generated_at": "2026-07-08T12:00:22Z",
+  "current_streak": 3,
+  "generated_at": "2026-07-10T12:40:01Z",
   "languages": [
     {
       "color": "#3572A5",
       "name": "Python",
-      "percent": 0.8765,
-      "size": 26932442
+      "percent": 0.8766,
+      "size": 26953224
     },
     {
       "color": "#3178c6",
@@ -87,7 +87,7 @@
     {
       "color": "#DA5B0B",
       "name": "Jupyter Notebook",
-      "percent": 0.0362,
+      "percent": 0.0361,
       "size": 1111057
     },
     {
@@ -162,14 +162,14 @@
       "month": "2026-06"
     },
     {
-      "count": 2,
+      "count": 20,
       "month": "2026-07"
     }
   ],
   "source_scan": {
     "failed_repositories": 0,
-    "files": 471,
-    "lines": 64035,
+    "files": 472,
+    "lines": 64501,
     "repositories": 30
   },
   "tests": {
@@ -177,6 +177,6 @@
     "files": 8,
     "lines": 246
   },
-  "total_contributions": 1152,
+  "total_contributions": 1153,
   "username": "kathigg"
 }
