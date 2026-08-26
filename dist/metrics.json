@@ -1,5 +1,5 @@
 {
-  "active_days": 193,
+  "active_days": 194,
   "awards": [
     {
       "active": true,
@@ -69,14 +69,14 @@
   "comments": {
     "lines": 3563
   },
-  "current_streak": 3,
-  "generated_at": "2026-08-25T10:55:55Z",
+  "current_streak": 4,
+  "generated_at": "2026-08-26T10:56:15Z",
   "languages": [
     {
       "color": "#3572A5",
       "name": "Python",
       "percent": 0.8768,
-      "size": 27029851
+      "size": 27031186
     },
     {
       "color": "#3178c6",
@@ -162,14 +162,14 @@
       "month": "2026-07"
     },
     {
-      "count": 102,
+      "count": 107,
       "month": "2026-08"
     }
   ],
   "source_scan": {
     "failed_repositories": 0,
     "files": 476,
-    "lines": 66229,
+    "lines": 66263,
     "repositories": 30
   },
   "tests": {
@@ -177,6 +177,6 @@
     "files": 8,
     "lines": 246
   },
-  "total_contributions": 1288,
+  "total_contributions": 1293,
   "username": "kathigg"
 }
