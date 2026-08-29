@@ -2,7 +2,7 @@
   "active_days": 195,
   "awards": [
     {
-      "active": true,
+      "active": false,
       "color": "#f59e0b",
       "subtitle": "Start the chain",
       "threshold": 1,
@@ -69,8 +69,8 @@
   "comments": {
     "lines": 3568
   },
-  "current_streak": 1,
-  "generated_at": "2026-08-28T21:13:13Z",
+  "current_streak": 0,
+  "generated_at": "2026-08-29T15:08:25Z",
   "languages": [
     {
       "color": "#3572A5",
