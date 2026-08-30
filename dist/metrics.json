@@ -1,8 +1,8 @@
 {
-  "active_days": 195,
+  "active_days": 196,
   "awards": [
     {
-      "active": false,
+      "active": true,
       "color": "#f59e0b",
       "subtitle": "Start the chain",
       "threshold": 1,
@@ -67,39 +67,39 @@
     }
   ],
   "comments": {
-    "lines": 3568
+    "lines": 3664
   },
-  "current_streak": 0,
-  "generated_at": "2026-08-29T15:08:25Z",
+  "current_streak": 1,
+  "generated_at": "2026-08-30T14:55:22Z",
   "languages": [
     {
       "color": "#3572A5",
       "name": "Python",
-      "percent": 0.8769,
-      "size": 27089912
+      "percent": 0.8778,
+      "size": 27372025
     },
     {
       "color": "#3178c6",
       "name": "TypeScript",
-      "percent": 0.052,
+      "percent": 0.0516,
       "size": 1607522
     },
     {
       "color": "#DA5B0B",
       "name": "Jupyter Notebook",
-      "percent": 0.036,
+      "percent": 0.0356,
       "size": 1111057
     },
     {
       "color": "#f34b7d",
       "name": "C++",
-      "percent": 0.0081,
+      "percent": 0.008,
       "size": 250402
     },
     {
       "color": "#e16737",
       "name": "MATLAB",
-      "percent": 0.0076,
+      "percent": 0.0075,
       "size": 233620
     },
     {
@@ -111,8 +111,8 @@
     {
       "color": "#8d99ae",
       "name": "Other",
-      "percent": 0.012,
-      "size": 370526
+      "percent": 0.0122,
+      "size": 379554
     }
   ],
   "longest_streak": 14,
@@ -162,14 +162,14 @@
       "month": "2026-07"
     },
     {
-      "count": 108,
+      "count": 112,
       "month": "2026-08"
     }
   ],
   "source_scan": {
     "failed_repositories": 0,
-    "files": 479,
-    "lines": 67728,
+    "files": 495,
+    "lines": 74287,
     "repositories": 30
   },
   "tests": {
@@ -177,6 +177,6 @@
     "files": 9,
     "lines": 346
   },
-  "total_contributions": 1294,
+  "total_contributions": 1298,
   "username": "kathigg"
 }
