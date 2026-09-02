@@ -1,8 +1,8 @@
 {
-  "active_days": 196,
+  "active_days": 195,
   "awards": [
     {
-      "active": true,
+      "active": false,
       "color": "#f59e0b",
       "subtitle": "Start the chain",
       "threshold": 1,
@@ -10,7 +10,7 @@
       "unlocked": true
     },
     {
-      "active": true,
+      "active": false,
       "color": "#ea580c",
       "subtitle": "3-day habit",
       "threshold": 3,
@@ -69,8 +69,8 @@
   "comments": {
     "lines": 3665
   },
-  "current_streak": 3,
-  "generated_at": "2026-09-01T14:59:52Z",
+  "current_streak": 0,
+  "generated_at": "2026-09-02T14:34:41Z",
   "languages": [
     {
       "color": "#3572A5",
@@ -177,6 +177,6 @@
     "files": 9,
     "lines": 346
   },
-  "total_contributions": 1289,
+  "total_contributions": 1287,
   "username": "kathigg"
 }
