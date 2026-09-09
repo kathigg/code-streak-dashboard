@@ -2,7 +2,7 @@
   "active_days": 198,
   "awards": [
     {
-      "active": true,
+      "active": false,
       "color": "#f59e0b",
       "subtitle": "Start the chain",
       "threshold": 1,
@@ -10,7 +10,7 @@
       "unlocked": true
     },
     {
-      "active": true,
+      "active": false,
       "color": "#ea580c",
       "subtitle": "3-day habit",
       "threshold": 3,
@@ -69,8 +69,8 @@
   "comments": {
     "lines": 3778
   },
-  "current_streak": 3,
-  "generated_at": "2026-09-08T14:41:04Z",
+  "current_streak": 0,
+  "generated_at": "2026-09-09T14:41:08Z",
   "languages": [
     {
       "color": "#3572A5",
