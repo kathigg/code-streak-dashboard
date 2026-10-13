@@ -1,8 +1,8 @@
 {
-  "active_days": 201,
+  "active_days": 200,
   "awards": [
     {
-      "active": true,
+      "active": false,
       "color": "#f59e0b",
       "subtitle": "Start the chain",
       "threshold": 1,
@@ -67,10 +67,10 @@
     }
   ],
   "comments": {
-    "lines": 3699
+    "lines": 3624
   },
-  "current_streak": 2,
-  "generated_at": "2026-10-12T19:53:50Z",
+  "current_streak": 0,
+  "generated_at": "2026-10-13T17:42:15Z",
   "languages": [
     {
       "color": "#3572A5",
@@ -167,16 +167,16 @@
     }
   ],
   "source_scan": {
-    "failed_repositories": 0,
-    "files": 513,
-    "lines": 76793,
-    "repositories": 30
+    "failed_repositories": 1,
+    "files": 504,
+    "lines": 74490,
+    "repositories": 29
   },
   "tests": {
     "cases": 18,
     "files": 9,
     "lines": 346
   },
-  "total_contributions": 1272,
+  "total_contributions": 1270,
   "username": "kathigg"
 }
