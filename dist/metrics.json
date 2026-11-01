@@ -67,10 +67,10 @@
     }
   ],
   "comments": {
-    "lines": 3969
+    "lines": 3894
   },
   "current_streak": 0,
-  "generated_at": "2026-10-31T15:48:43Z",
+  "generated_at": "2026-11-01T16:53:17Z",
   "languages": [
     {
       "color": "#3572A5",
@@ -118,10 +118,6 @@
   "longest_streak": 14,
   "monthly": [
     {
-      "count": 107,
-      "month": "2025-11"
-    },
-    {
       "count": 56,
       "month": "2025-12"
     },
@@ -164,13 +160,17 @@
     {
       "count": 142,
       "month": "2026-10"
+    },
+    {
+      "count": 0,
+      "month": "2026-11"
     }
   ],
   "source_scan": {
-    "failed_repositories": 0,
-    "files": 507,
-    "lines": 77766,
-    "repositories": 30
+    "failed_repositories": 1,
+    "files": 498,
+    "lines": 75463,
+    "repositories": 29
   },
   "tests": {
     "cases": 18,
