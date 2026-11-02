@@ -67,10 +67,10 @@
     }
   ],
   "comments": {
-    "lines": 3894
+    "lines": 3969
   },
   "current_streak": 0,
-  "generated_at": "2026-11-01T16:53:17Z",
+  "generated_at": "2026-11-02T20:25:54Z",
   "languages": [
     {
       "color": "#3572A5",
@@ -167,10 +167,10 @@
     }
   ],
   "source_scan": {
-    "failed_repositories": 1,
-    "files": 498,
-    "lines": 75463,
-    "repositories": 29
+    "failed_repositories": 0,
+    "files": 507,
+    "lines": 77766,
+    "repositories": 30
   },
   "tests": {
     "cases": 18,
