@@ -2,7 +2,7 @@
   "active_days": 198,
   "awards": [
     {
-      "active": false,
+      "active": true,
       "color": "#f59e0b",
       "subtitle": "Start the chain",
       "threshold": 1,
@@ -67,15 +67,15 @@
     }
   ],
   "comments": {
-    "lines": 3969
+    "lines": 3894
   },
-  "current_streak": 0,
-  "generated_at": "2026-11-02T20:25:54Z",
+  "current_streak": 1,
+  "generated_at": "2026-11-03T18:04:30Z",
   "languages": [
     {
       "color": "#3572A5",
       "name": "Python",
-      "percent": 0.8688,
+      "percent": 0.8683,
       "size": 27388149
     },
     {
@@ -93,8 +93,8 @@
     {
       "color": "#f1e05a",
       "name": "JavaScript",
-      "percent": 0.0105,
-      "size": 331720
+      "percent": 0.011,
+      "size": 345649
     },
     {
       "color": "#f34b7d",
@@ -111,8 +111,8 @@
     {
       "color": "#8d99ae",
       "name": "Other",
-      "percent": 0.016,
-      "size": 504938
+      "percent": 0.0161,
+      "size": 506990
     }
   ],
   "longest_streak": 14,
@@ -162,21 +162,21 @@
       "month": "2026-10"
     },
     {
-      "count": 0,
+      "count": 5,
       "month": "2026-11"
     }
   ],
   "source_scan": {
-    "failed_repositories": 0,
-    "files": 507,
-    "lines": 77766,
-    "repositories": 30
+    "failed_repositories": 1,
+    "files": 498,
+    "lines": 75487,
+    "repositories": 29
   },
   "tests": {
     "cases": 18,
     "files": 9,
     "lines": 346
   },
-  "total_contributions": 1312,
+  "total_contributions": 1311,
   "username": "kathigg"
 }
