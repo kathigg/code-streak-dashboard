@@ -67,15 +67,15 @@
     }
   ],
   "comments": {
-    "lines": 3894
+    "lines": 4259
   },
   "current_streak": 1,
-  "generated_at": "2026-11-03T18:04:30Z",
+  "generated_at": "2026-11-04T18:06:32Z",
   "languages": [
     {
       "color": "#3572A5",
       "name": "Python",
-      "percent": 0.8683,
+      "percent": 0.8672,
       "size": 27388149
     },
     {
@@ -93,14 +93,14 @@
     {
       "color": "#f1e05a",
       "name": "JavaScript",
-      "percent": 0.011,
-      "size": 345649
+      "percent": 0.0113,
+      "size": 356844
     },
     {
       "color": "#f34b7d",
       "name": "C++",
-      "percent": 0.0103,
-      "size": 324866
+      "percent": 0.0112,
+      "size": 355036
     },
     {
       "color": "#e16737",
@@ -162,21 +162,21 @@
       "month": "2026-10"
     },
     {
-      "count": 5,
+      "count": 16,
       "month": "2026-11"
     }
   ],
   "source_scan": {
-    "failed_repositories": 1,
-    "files": 498,
-    "lines": 75487,
-    "repositories": 29
+    "failed_repositories": 0,
+    "files": 508,
+    "lines": 78756,
+    "repositories": 30
   },
   "tests": {
     "cases": 18,
     "files": 9,
     "lines": 346
   },
-  "total_contributions": 1311,
+  "total_contributions": 1322,
   "username": "kathigg"
 }
