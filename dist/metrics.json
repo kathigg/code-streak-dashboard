@@ -1,8 +1,8 @@
 {
-  "active_days": 195,
+  "active_days": 194,
   "awards": [
     {
-      "active": true,
+      "active": false,
       "color": "#f59e0b",
       "subtitle": "Start the chain",
       "threshold": 1,
@@ -69,8 +69,8 @@
   "comments": {
     "lines": 4253
   },
-  "current_streak": 1,
-  "generated_at": "2026-11-09T20:52:23Z",
+  "current_streak": 0,
+  "generated_at": "2026-11-10T17:59:03Z",
   "languages": [
     {
       "color": "#3572A5",
@@ -177,6 +177,6 @@
     "files": 9,
     "lines": 346
   },
-  "total_contributions": 1329,
+  "total_contributions": 1323,
   "username": "kathigg"
 }
