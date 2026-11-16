@@ -10,7 +10,7 @@
       "unlocked": true
     },
     {
-      "active": false,
+      "active": true,
       "color": "#ea580c",
       "subtitle": "3-day habit",
       "threshold": 3,
@@ -69,13 +69,13 @@
   "comments": {
     "lines": 4253
   },
-  "current_streak": 2,
-  "generated_at": "2026-11-15T17:17:19Z",
+  "current_streak": 3,
+  "generated_at": "2026-11-16T20:35:17Z",
   "languages": [
     {
       "color": "#3572A5",
       "name": "Python",
-      "percent": 0.8666,
+      "percent": 0.8664,
       "size": 27388149
     },
     {
@@ -87,14 +87,14 @@
     {
       "color": "#DA5B0B",
       "name": "Jupyter Notebook",
-      "percent": 0.0352,
+      "percent": 0.0351,
       "size": 1111057
     },
     {
       "color": "#f1e05a",
       "name": "JavaScript",
-      "percent": 0.0119,
-      "size": 375092
+      "percent": 0.012,
+      "size": 380706
     },
     {
       "color": "#f34b7d",
@@ -112,7 +112,7 @@
       "color": "#8d99ae",
       "name": "Other",
       "percent": 0.016,
-      "size": 507237
+      "size": 507095
     }
   ],
   "longest_streak": 14,
@@ -162,14 +162,14 @@
       "month": "2026-10"
     },
     {
-      "count": 66,
+      "count": 72,
       "month": "2026-11"
     }
   ],
   "source_scan": {
     "failed_repositories": 0,
     "files": 508,
-    "lines": 78857,
+    "lines": 78856,
     "repositories": 30
   },
   "tests": {
@@ -177,6 +177,6 @@
     "files": 9,
     "lines": 346
   },
-  "total_contributions": 1334,
+  "total_contributions": 1332,
   "username": "kathigg"
 }
