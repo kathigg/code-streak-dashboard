@@ -1,5 +1,5 @@
 {
-  "active_days": 195,
+  "active_days": 197,
   "awards": [
     {
       "active": true,
@@ -67,40 +67,40 @@
     }
   ],
   "comments": {
-    "lines": 4253
+    "lines": 4234
   },
-  "current_streak": 3,
-  "generated_at": "2026-11-16T20:35:17Z",
+  "current_streak": 5,
+  "generated_at": "2026-11-17T19:15:04Z",
   "languages": [
     {
       "color": "#3572A5",
       "name": "Python",
-      "percent": 0.8664,
+      "percent": 0.8705,
       "size": 27388149
     },
     {
       "color": "#3178c6",
       "name": "TypeScript",
-      "percent": 0.0516,
+      "percent": 0.0518,
       "size": 1631415
     },
     {
       "color": "#DA5B0B",
       "name": "Jupyter Notebook",
-      "percent": 0.0351,
+      "percent": 0.0353,
       "size": 1111057
-    },
-    {
-      "color": "#f1e05a",
-      "name": "JavaScript",
-      "percent": 0.012,
-      "size": 380706
     },
     {
       "color": "#f34b7d",
       "name": "C++",
-      "percent": 0.0113,
-      "size": 358644
+      "percent": 0.0114,
+      "size": 358956
+    },
+    {
+      "color": "#f1e05a",
+      "name": "JavaScript",
+      "percent": 0.0102,
+      "size": 320393
     },
     {
       "color": "#e16737",
@@ -111,8 +111,8 @@
     {
       "color": "#8d99ae",
       "name": "Other",
-      "percent": 0.016,
-      "size": 507095
+      "percent": 0.0134,
+      "size": 420750
     }
   ],
   "longest_streak": 14,
@@ -162,14 +162,14 @@
       "month": "2026-10"
     },
     {
-      "count": 72,
+      "count": 78,
       "month": "2026-11"
     }
   ],
   "source_scan": {
     "failed_repositories": 0,
-    "files": 508,
-    "lines": 78856,
+    "files": 506,
+    "lines": 76618,
     "repositories": 30
   },
   "tests": {
@@ -177,6 +177,6 @@
     "files": 9,
     "lines": 346
   },
-  "total_contributions": 1332,
+  "total_contributions": 1338,
   "username": "kathigg"
 }
