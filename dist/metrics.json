@@ -10,7 +10,7 @@
       "unlocked": true
     },
     {
-      "active": false,
+      "active": true,
       "color": "#ea580c",
       "subtitle": "3-day habit",
       "threshold": 3,
@@ -67,40 +67,40 @@
     }
   ],
   "comments": {
-    "lines": 4022
+    "lines": 4023
   },
-  "current_streak": 2,
-  "generated_at": "2026-11-23T22:06:30Z",
+  "current_streak": 3,
+  "generated_at": "2026-11-24T20:43:31Z",
   "languages": [
     {
       "color": "#3572A5",
       "name": "Python",
-      "percent": 0.8696,
+      "percent": 0.8685,
       "size": 27388149
     },
     {
       "color": "#3178c6",
       "name": "TypeScript",
-      "percent": 0.0518,
+      "percent": 0.0517,
       "size": 1631415
     },
     {
       "color": "#DA5B0B",
       "name": "Jupyter Notebook",
-      "percent": 0.0353,
+      "percent": 0.0352,
       "size": 1111057
+    },
+    {
+      "color": "#f1e05a",
+      "name": "JavaScript",
+      "percent": 0.0123,
+      "size": 386609
     },
     {
       "color": "#f34b7d",
       "name": "C++",
       "percent": 0.0115,
       "size": 361096
-    },
-    {
-      "color": "#f1e05a",
-      "name": "JavaScript",
-      "percent": 0.011,
-      "size": 347231
     },
     {
       "color": "#e16737",
@@ -112,7 +112,7 @@
       "color": "#8d99ae",
       "name": "Other",
       "percent": 0.0134,
-      "size": 420896
+      "size": 421966
     }
   ],
   "longest_streak": 14,
@@ -162,14 +162,14 @@
       "month": "2026-10"
     },
     {
-      "count": 132,
+      "count": 155,
       "month": "2026-11"
     }
   ],
   "source_scan": {
     "failed_repositories": 0,
-    "files": 502,
-    "lines": 76234,
+    "files": 503,
+    "lines": 76262,
     "repositories": 30
   },
   "tests": {
@@ -177,6 +177,6 @@
     "files": 9,
     "lines": 346
   },
-  "total_contributions": 1377,
+  "total_contributions": 1396,
   "username": "kathigg"
 }
