@@ -18,7 +18,7 @@
       "unlocked": true
     },
     {
-      "active": false,
+      "active": true,
       "color": "#dc2626",
       "subtitle": "7-day streak",
       "threshold": 7,
@@ -69,8 +69,8 @@
   "comments": {
     "lines": 4023
   },
-  "current_streak": 6,
-  "generated_at": "2026-11-27T19:32:35Z",
+  "current_streak": 7,
+  "generated_at": "2026-11-28T18:18:35Z",
   "languages": [
     {
       "color": "#3572A5",
@@ -162,7 +162,7 @@
       "month": "2026-10"
     },
     {
-      "count": 211,
+      "count": 214,
       "month": "2026-11"
     }
   ],
